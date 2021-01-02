@@ -1,0 +1,27 @@
+Anotações: React native;
+https://www.youtube.com/watch?v=Hln37dE19bs&ab_channel=BenAwad
+
+Icons: 
+https://docs.expo.io/guides/icons/.
+
+Fonts: 
+https://github.com/expo/google-fonts/tree/master/font-packages/karla
+https://docs.expo.io/guides/using-custom-fonts/.
+
+Navigation: 
+https://reactnavigation.org/docs/getting-started
+
+
+npm install --global expo-cli
+expo init my-project
+
+//FONTS
+yarn add expo-app-loading
+expo install @expo-google-fonts/karla expo-font
+expo install @expo-google-fonts/yellowtail expo-font
+
+//STACK NAVIGATION React Navigation 4x
+yarn add react-navigation
+expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+yarn add react-navigation-stack @react-native-community/masked-view react-native-safe-area-context
+yarn add react-navigation-drawer

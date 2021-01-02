@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import { useFonts, Yellowtail_400Regular } from '@expo-google-fonts/yellowtail';
+import { Karla_400Regular, Karla_700Bold, } from '@expo-google-fonts/karla';
+import AddLesson from './src/screens/AddLesson';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const [fontsLoaded] = useFonts({
+    Yellowtail_400Regular,
+    Karla_400Regular,
+    Karla_700Bold
+  });
+  
+  if(!fontsLoaded) {
+    return (
+      <AppLoading />
+    );
+  } else {
+    return (
+      <AddLesson />
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
