@@ -3,10 +3,10 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import globalStyles from '../components/globalStyles';
 import GoldButton from '../components/GoldButton';
 
-export default function UserAddLesson() {
+export default function UserAddLesson({setValue}) {
     return (
         <View style={styles.container}>
-            <GoldButton onPress={() => console.log("oi")}>Entrar</GoldButton>
+            <GoldButton onPress={() => setValue(true)}>Entrar</GoldButton>
         </View>
     );
 }

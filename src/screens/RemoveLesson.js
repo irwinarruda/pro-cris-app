@@ -6,7 +6,7 @@ import GoldButton from '../components/GoldButton';
 export default function RemoveLesson() {
     return (
         <View style={styles.container}>
-            <GoldButton onPress={() => console.log("oi")}>Entrar</GoldButton>
+            <GoldButton onPress={() => console.log("oi")}>Sair</GoldButton>
         </View>
     );
 }
