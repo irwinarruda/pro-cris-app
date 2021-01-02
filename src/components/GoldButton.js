@@ -5,7 +5,7 @@ export default function GoldButton(props) {
     return (
         <TouchableOpacity 
             style={ styles.goldButtonYellow }
-            activeOpacity='0.7'
+            activeOpacity={0.7}
             {...props}
         >
             <Text style={styles.goldButtonYellowText}>{ props.children }</Text>
@@ -18,12 +18,11 @@ const styles = StyleSheet.create({
         fontFamily: 'Yellowtail_400Regular',
         fontSize: 48,
         color: '#FBFAFF',
-        textAlign: 'center',
-        /* display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center', */
     },
     goldButtonYellow: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: 232,
         height: 72,
         paddingVertical: 5,

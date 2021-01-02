@@ -25,3 +25,6 @@ yarn add react-navigation
 expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
 yarn add react-navigation-stack @react-native-community/masked-view react-native-safe-area-context
 yarn add react-navigation-drawer
+
+//NAVIGATION React Navigation 5x
+
