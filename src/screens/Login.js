@@ -12,15 +12,15 @@ export default function Login({ navigation }) {
         navigation.navigate('Register');
     }
     return (
-        <ViewForm style={globalStyles.container}>
-            <Image source={logo} />
+        <ViewForm style={globalStyles.containerLoginRegister}>
+            <Image source={logo} style={styles.image}/>
             <View style={styles.formContainer}>
                 <View style={styles.inputContainer}>
-                    <Text style={globalStyles.bold_black_24_karla}>E-mail</Text>
-                    <TextInput style={styles.input} onChangeText={(val) => setEmail(val)}/>
+                    <Text style={globalStyles.bold_black_20_karla}>E-mail</Text>
+                    <TextInput style={styles.input} autoCapitalize='none' onChangeText={(val) => setEmail(val)}/>
                 </View>
                 <View style={styles.inputContainer}>
-                    <Text style={globalStyles.bold_black_24_karla}>Senha</Text>
+                    <Text style={globalStyles.bold_black_20_karla}>Senha</Text>
                     <TextInput style={styles.input} secureTextEntry={true} onChangeText={(val) => setPassword(val)}/>
                 </View>
             </View>
@@ -40,21 +40,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#9A8DD6',
         borderRadius: 10,
         paddingHorizontal: 20,
-        paddingVertical: 13,
+        paddingVertical: 10,
         fontFamily: 'Karla_700Bold',
-        fontSize: 24,
+        fontSize: 20,
         color: '#FBFAFF',
-        marginTop: 7,
+        marginTop: 0,
     },
     inputContainer: {
         marginTop: 20,
     },
     buttonContainer: {
-        marginTop: 45,
+        marginTop: 35,
     },
     formContainer: {
         width: '100%',
-        marginTop: 40,
+        marginTop: 5,
+    },
+    formContainer: {
+        width: '100%',
+        marginTop: 20,
     },
     criarContainer: {
         marginTop: 15,

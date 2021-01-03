@@ -2,17 +2,22 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 const globalStyles = StyleSheet.create({
-
-    container: {
+    containerLoginRegister: {
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        padding: 30,
+        paddingHorizontal: 30,
+        paddingTop: 45,
         backgroundColor: '#FBFAFF',
     },
     bold_black_24_karla: {
         fontFamily: 'Karla_700Bold',
         fontSize: 24,
+        color: '#353440'
+    },
+    bold_black_20_karla: {
+        fontFamily: 'Karla_700Bold',
+        fontSize: 20,
         color: '#353440'
     },
     bold_black_18_karla: {

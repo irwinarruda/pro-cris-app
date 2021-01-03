@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import globalStyles from '../components/globalStyles';
 import GoldButton from '../components/GoldButton';
 import ViewForm from '../components/ViewForm';
-//import {  } from ''
 
 export default function AddLesson({ navigation }) {
     function handlePress() {

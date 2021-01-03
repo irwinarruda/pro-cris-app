@@ -6,28 +6,33 @@ import GoldButton from '../components/GoldButton';
 import ViewForm from '../components/ViewForm';
 
 export default function Register({ navigation }) {
+    const [nome, setNome] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [confirmPassword, setConfirmPassword] = React.useState('');
+
     function handlePressCriar() {
         navigation.navigate('Login');
     }
     return (
-        <ViewForm style={globalStyles.container}>
+        <ViewForm style={globalStyles.containerLoginRegister}>
             <Image source={logo} />
             <View style={styles.formContainer}>
-            <View style={styles.inputContainer}>
-                    <Text style={globalStyles.bold_black_24_karla}>Nome</Text>
-                    <TextInput style={styles.input} />
+                <View style={styles.inputContainer}>
+                    <Text style={globalStyles.bold_black_20_karla}>Nome</Text>
+                    <TextInput style={styles.input} onChangeText={(val) => setNome(val)}/>
                 </View>
                 <View style={styles.inputContainer}>
-                    <Text style={globalStyles.bold_black_24_karla}>E-mail</Text>
-                    <TextInput style={styles.input} />
+                    <Text style={globalStyles.bold_black_20_karla}>E-mail</Text>
+                    <TextInput style={styles.input} autoCapitalize='none' onChangeText={(val) => setEmail(val)}/>
                 </View>
                 <View style={styles.inputContainer}>
-                    <Text style={globalStyles.bold_black_24_karla}>Senha</Text>
-                    <TextInput style={styles.input} secureTextEntry={true} />
+                    <Text style={globalStyles.bold_black_20_karla}>Senha</Text>
+                    <TextInput style={styles.input} secureTextEntry={true} onChangeText={(val) => setPassword(val)} />
                 </View>
                 <View style={styles.inputContainer}>
-                    <Text style={globalStyles.bold_black_24_karla}>Confirmar Senha</Text>
-                    <TextInput style={styles.input} secureTextEntry={true} />
+                    <Text style={globalStyles.bold_black_20_karla}>Confirmar Senha</Text>
+                    <TextInput style={styles.input} secureTextEntry={true} onChangeText={(val) => setConfirmPassword(val)} />
                 </View>
             </View>
             <View style={styles.buttonContainer}>
@@ -35,7 +40,7 @@ export default function Register({ navigation }) {
             </View>
             <TouchableOpacity activeOpacity={0.7} style={styles.criarContainer} onPress={ handlePressCriar }>
                 <Text style={globalStyles.bold_black_18_karla}>Já tem uma conta?</Text>
-                <Text style={globalStyles.bold_black_18_karla}>Clike Aqui</Text>
+                <Text style={globalStyles.bold_black_18_karla}>Clique Aqui</Text>
             </TouchableOpacity>
         </ViewForm>
     );
@@ -46,21 +51,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#9A8DD6',
         borderRadius: 10,
         paddingHorizontal: 20,
-        paddingVertical: 13,
+        paddingVertical: 10,
         fontFamily: 'Karla_700Bold',
-        fontSize: 24,
+        fontSize: 20,
         color: '#FBFAFF',
-        marginTop: 7,
+        marginTop: 0,
     },
     inputContainer: {
         marginTop: 10,
     },
     buttonContainer: {
-        marginTop: 45,
+        marginTop: 25,
     },
     formContainer: {
         width: '100%',
-        marginTop: 15,
+        marginTop: 5,
     },
     criarContainer: {
         width: 250,

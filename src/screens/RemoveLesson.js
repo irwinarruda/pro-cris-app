@@ -3,10 +3,13 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import globalStyles from '../components/globalStyles';
 import GoldButton from '../components/GoldButton';
 
-export default function RemoveLesson() {
+export default function RemoveLesson({ navigation }) {
+    function handlePress() {
+        navigation.navigate('AddLesson');
+    }
     return (
         <View style={styles.container}>
-            <GoldButton onPress={() => console.log("oi")}>Sair</GoldButton>
+            <GoldButton onPress={handlePress}>Sair</GoldButton>
         </View>
     );
 }

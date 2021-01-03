@@ -3,9 +3,7 @@ import { Karla_400Regular, Karla_700Bold, } from '@expo-google-fonts/karla';
 import React from 'react';
 import AppLoading from 'expo-app-loading';
 import Routes from './src/routes/Routes';
-import AddLesson from './src/screens/AddLesson';
-import RemoveLesson from './src/screens/RemoveLesson';
-import globalStyles from './src/components/globalStyles';
+import { AuthProvider } from './src/components/AuthProvider';
 
 
 export default function App() {
@@ -21,7 +19,9 @@ export default function App() {
     );
   } else {
     return (
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     );
   }
 }
