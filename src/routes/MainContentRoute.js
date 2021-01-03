@@ -1,5 +1,6 @@
 import React from 'react';
-import { createStackNavigator, TransitionPresets, CardStyleInterpolators } from '@react-navigation/stack';
+//import { Dimensions, Animated } from 'react-native';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import AddLesson from '../screens/AddLesson';
 import RemoveLesson from '../screens/RemoveLesson';
 import Header from '../components/Header';
@@ -7,24 +8,25 @@ import { Easing } from 'react-native-reanimated';
 
 const MainContentStack = createStackNavigator();
 
-export default function MainContentRoute(props) {
+export default function MainContentRoute() {
+    const [animatedBar, setAnimatedBar] = React.useState(0);
 
     return (
         <MainContentStack.Navigator
             initialRouteName="AddLesson"
             headerMode='float'
             screenOptions={{
-                headerTitle: (props) => <Header {...props} />,
+                headerTitle: () => <Header animatedBar={animatedBar} setAnimatedBar={setAnimatedBar} />,
                 headerStyle: {
                     backgroundColor: '#7C6FBD',    
-                    height: 167,    
+                    height: 167, 
                 },
                 headerLeft: () => null,
                 headerTitleAlign: "center", 
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                gestureEnabled: true, 
+                gestureEnabled: false, 
                 gestureDirection: 'horizontal', 
-                swipeEnabled: true,
+                swipeEnabled: false,
             }}
         >
             <MainContentStack.Screen name='AddLesson' component={ AddLesson }  />

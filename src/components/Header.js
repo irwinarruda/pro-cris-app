@@ -1,45 +1,27 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons'; 
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import logo from '../../assets/pro-cris-w.png';
-import Animated from 'react-native-reanimated';
 
-export default function Header() {
-    const [page, setPage] = React.useState(true);
-    const navigation = useNavigation();
-    let activeStylesLeft = {
-        width: '50%',
-        height: 4,
-        backgroundColor: '#BAB273',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-    };
-    let activeStylesRight = {
-        width: '50%',
-        height: 4,
-        backgroundColor: '#BAB273',
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-    };
+export default function Header({animatedBar, setAnimatedBar, slide, slideIn, slideOut}) {
+    const animatedBarScreenWidth = (Dimensions.get('window').width - (Dimensions.get('window').width / 2)); 
+    const navigation = useNavigation();   
+  
+    React.useEffect(() => {
+        if(animatedBar === 0) {
+            navigation.navigate('AddLesson');
+        } else {
+            navigation.navigate('RemoveLesson');
+        }
+    }, [animatedBar]);
 
     function rightButtonPress() {
-        if(!navigation.canGoBack()) {
-            setPage(false); 
-            navigation.navigate('RemoveLesson'); 
-        }
-        console.log(navigation.canGoBack())
-          
+        setAnimatedBar(animatedBarScreenWidth);
     }
     function leftButtonPress() {
-        if(navigation.canGoBack()) {
-            setPage(true);
-            navigation.navigate('AddLesson');
-        }    
-        
+        setAnimatedBar(0);
     }
     return (
         <View style={styles.containerHeader}>
@@ -54,13 +36,13 @@ export default function Header() {
                 </View>
             </View>
             <View style={styles.bottomContainer}>
-                <TouchableOpacity  style={styles.leftButton} onPress={leftButtonPress} >
+                <TouchableOpacity  style={styles.navButton} onPress={leftButtonPress} >
                     <FontAwesome5 name="clipboard" size={34} color="#F3F2F7" />     
                 </TouchableOpacity>
-                <TouchableOpacity  style={styles.rightButton} onPress={rightButtonPress}>
+                <TouchableOpacity  style={styles.navButton} onPress={rightButtonPress}>
                     <FontAwesome5 name="money-bill-alt" size={34} color="#F3F2F7" />          
                 </TouchableOpacity>
-                <View style={page ? activeStylesLeft: activeStylesRight}></View>
+                <Animated.View style={[styles.indicationBar, {left: animatedBar}]}></Animated.View>
             </View>
         </View>    
     );
@@ -85,6 +67,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingTop: 0,
         paddingBottom: 0,
+        borderBottomColor: '#CCC4F2',
+        borderBottomWidth: 2,
     },  
     bottomContainer: {
         backgroundColor: '#9A8DD6',
@@ -95,7 +79,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'relative',
     },
-    leftButton: {
+    navButton: {
         paddingVertical: 15,
         width: '50%',
         display: 'flex',
@@ -103,19 +87,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRightColor: '#CCC4F2',
         borderRightWidth: 1,
-        borderTopColor: '#CCC4F2',
-        borderTopWidth: 2,
-    },
-    rightButton: {
-        paddingVertical: 15,
-        width: '50%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderLeftColor: '#CCC4F2',
-        borderLeftWidth: 1,
-        borderTopColor: '#CCC4F2',
-        borderTopWidth: 2,
     },
     indicationBar: {
         width: '50%',
@@ -123,7 +94,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#BAB273',
         position: 'absolute',
         bottom: 0,
-        left: 0,
     },
     logoImage: {
         width: 131,
