@@ -1,30 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, Animated } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
-import { FontAwesome5 } from '@expo/vector-icons'; 
 import logo from '../../assets/pro-cris-w.png';
 import ConfigButtonHandler from './ConfigButtonHandler';
 
-export default function HeaderMain({animatedBar, setAnimatedBar}) {
-    const [configButton, setConfigButton] = React.useState(false);
-    const animatedBarScreenWidth = (Dimensions.get('window').width - (Dimensions.get('window').width / 2)); 
-    const navigation = useNavigation();   
+export default function HeaderConfig() {
+    const [configButton, setConfigButton] = React.useState(false);  
   
-    React.useEffect(() => {
-        if(animatedBar === 0) {
-            navigation.navigate('AddLesson');
-        } else {
-            navigation.navigate('RemoveLesson');
-        }
-    }, [animatedBar]);
-
-    function rightButtonPress() {
-        setAnimatedBar(animatedBarScreenWidth);
-    }
-    function leftButtonPress() {
-        setAnimatedBar(0);
-    }
     function configButtonPress() {
         setConfigButton(!configButton);
     }
@@ -34,16 +16,13 @@ export default function HeaderMain({animatedBar, setAnimatedBar}) {
                 <View>
                     <Image style={styles.logoImage} source={logo} />
                 </View>
-                <View>
-                    <TouchableOpacity activeOpacity={0.4} onPress={configButtonPress}>
-                        <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" />
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity activeOpacity={0.4} onPress={configButtonPress}>
+                    <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" />
+                </TouchableOpacity>
             </View>
             {configButton? (
                 <ConfigButtonHandler currentPage={false} />
             ): null}
-            
         </View>    
     );
 }

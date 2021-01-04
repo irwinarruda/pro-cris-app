@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, Animated } from 'react-native';
+import { StyleSheet, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons'; 
 import { FontAwesome5 } from '@expo/vector-icons'; 
@@ -47,7 +47,7 @@ export default function HeaderMain({animatedBar, setAnimatedBar}) {
                 <TouchableOpacity  style={styles.navButton} onPress={rightButtonPress}>
                     <FontAwesome5 name="money-bill-alt" size={34} color="#F3F2F7" />          
                 </TouchableOpacity>
-                <Animated.View style={[styles.indicationBar, {left: animatedBar}]}></Animated.View>
+                <View style={[styles.indicationBar, {left: animatedBar}]}></View>
             </View>
             {configButton? (
                 <ConfigButtonHandler currentPage={true} />

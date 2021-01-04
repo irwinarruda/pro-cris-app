@@ -1,13 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from'react-native';
 import { AuthContext } from './AuthProvider';
 import globalStyles from './globalStyles';
 
 export default function ConfigButtonHandler({ currentPage }) {
+    const fadeAnim = React.useRef(new Animated.Value(0)).current
     const { userLogout } = React.useContext(AuthContext);
-    const navigation = useNavigation();
     const [currentPageText, setCurrentPageText] = React.useState('');
+    const navigation = useNavigation();
+    
     React.useEffect(() => {
         if(currentPage) {
             setCurrentPageText('Minha Conta'); 
@@ -15,8 +17,19 @@ export default function ConfigButtonHandler({ currentPage }) {
             setCurrentPageText('Principal');
         }
     }, []);
+    React.useEffect(() => {
+        Animated.timing(
+            fadeAnim,
+            {
+                toValue: 1,
+                duration: 200,
+                useNativeDriver: false,
+            }
+        ).start()
+    }, [fadeAnim]);
+    
     return(
-        <View style={styles.configContainer}>
+        <Animated.View style={[styles.configContainer, {opacity: fadeAnim}]}>
             <TouchableOpacity 
                 style={styles.configContainerButton} 
                 onPress={() => {      
@@ -35,7 +48,7 @@ export default function ConfigButtonHandler({ currentPage }) {
                 </TouchableOpacity>
             ): (null) }
             
-        </View>
+        </Animated.View>
     );
 }
 
