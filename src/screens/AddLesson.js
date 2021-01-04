@@ -4,14 +4,35 @@ import globalStyles from '../components/globalStyles';
 import GoldButton from '../components/GoldButton';
 import ViewForm from '../components/ViewForm';
 import { Entypo } from '@expo/vector-icons'; 
+import { AuthContext } from '../components/AuthProvider';
 
 export default function AddLesson({ navigation }) {
+    const { students, studentsAdd, studentsEdit, studentsDelete } = React.useContext(AuthContext);
     function handlePress() {
-        navigation.navigate('RemoveLesson');
+        //navigation.navigate('RemoveLesson');
+        studentsAdd({
+            id: '1',
+            kidName: 'Irwin',
+            dateObirth: '17/10/2006',
+            parentName: 'Cristiani',
+            phoneNumber: '(62) 98888-8888',
+            houseNumber: '904 torre Sul',
+            givenClassesDate: ['07/01', '08/01', '09/01', '10/01'],
+            price: 100,      
+        });
+        //studentsDelete('2');
     }
+    React.useEffect(() => {
+        //console.log(students);
+    }, [students]);
     return (
         <ViewForm style={styles.container}>
             {/* <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" /> */}
+            {students.map((student) => (
+                <View key={student.id}>
+                    <Text>{student.kidName}</Text>
+                </View>
+            ))}
             <GoldButton onPress={handlePress}>Entrar</GoldButton>
         </ViewForm>
     );

@@ -3,8 +3,7 @@ import React from 'react';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import AddLesson from '../screens/AddLesson';
 import RemoveLesson from '../screens/RemoveLesson';
-import Header from '../components/Header';
-import { Easing } from 'react-native-reanimated';
+import HeaderMain from '../components/HeaderMain';
 
 const MainContentStack = createStackNavigator();
 
@@ -16,7 +15,7 @@ export default function MainContentRoute() {
             initialRouteName="AddLesson"
             headerMode='float'
             screenOptions={{
-                headerTitle: () => <Header animatedBar={animatedBar} setAnimatedBar={setAnimatedBar} />,
+                headerTitle: () => <HeaderMain animatedBar={animatedBar} setAnimatedBar={setAnimatedBar} />,
                 headerStyle: {
                     backgroundColor: '#7C6FBD',    
                     height: 167, 

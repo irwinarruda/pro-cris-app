@@ -25,6 +25,11 @@ const globalStyles = StyleSheet.create({
         fontSize: 18,
         color: '#353440'
     },
+    bold_black_16_karla: {
+        fontFamily: 'Karla_700Bold',
+        fontSize: 16,
+        color: '#353440'
+    },
     bold_black_14_karla: {
         fontFamily: 'Karla_700Bold',
         fontSize: 14,
