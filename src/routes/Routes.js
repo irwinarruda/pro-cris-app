@@ -29,7 +29,7 @@ const fakeStudents = [
     },
     {
         id: '3',
-        kidName: 'Helena Helena Helena Helena Helena',
+        kidName: 'Helena Helena Helena',
         dateObirth: '07/01/2000',
         parentName: 'Cristiani',
         phoneNumber: '(62) 98888-8888',
@@ -50,25 +50,16 @@ const fakeStudents = [
 ]
 
 export default function Routes() {
-    const { user, userLogin, userLogout, students, studentsAdd, studentsEdit, studentsDelete } = React.useContext(AuthContext);
-    const [loading, setLoading] = React.useState(true);
+    const { loading, user, userLogin, userLogout, userIsLoged, students, studentsAdd, studentsEdit, studentsDelete, studentsAddArr, studentsGet } = React.useContext(AuthContext);
+    
     
     React.useEffect(() => {
-        //userLogin({ username: 'Irwin Arruda'});
+        //userLogin({ username: 'Irwin Arruda', arr: [1, 2, 3, 4, 5, 6]});
         //userLogout();
-        AsyncStorage.getItem('user')
-        .then(userString => {
-            if(userString) {
-                console.log(userString);
-                userLogin(userString);
-            }      
-        })
-        .catch(err => {
-            console.log(err);
-        }).finally(() => {
-            setLoading(false);
-        });
-    }, []);
+        //studentsAddArr(fakeStudents);  
+        userIsLoged();
+        studentsGet();      
+    }, []); 
 
     if(loading) {
         return (

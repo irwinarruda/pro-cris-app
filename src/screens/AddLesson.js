@@ -13,13 +13,23 @@ export default function AddLesson({ navigation }) {
     const { students, studentsAdd, studentsEdit, studentsDelete, studentsDestroy } = React.useContext(AuthContext);
 
     function handlePress() {
-        studentsDestroy()
+        //studentsDestroy()
         //studentsDelete('4');
+        studentsAdd({
+            id: '10',
+            kidName: 'Irwin Arruda',
+            dateObirth: '07/01/2000',
+            parentName: 'Cristiani',
+            phoneNumber: '(62) 98888-8888',
+            houseNumber: '904 torre Sul',
+            givenClassesDate: ['07/01', '08/01', '09/01', '10/01'],
+            price: 100,      
+        })
     }
     return (
         <ViewForm style={styles.container}>
             {/* <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" /> */}
-            {students.map((student) => (
+            {students? students.map((student) => (
                 <TouchableOpacity key={student.id} style={styles.studentContainer}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.image} source={logo} />
@@ -34,7 +44,7 @@ export default function AddLesson({ navigation }) {
                         </View>
                     </View>
                 </TouchableOpacity>
-            ))}
+            )): null}
             <GoldButton onPress={handlePress}>Delete</GoldButton>
         </ViewForm>
     );
@@ -54,7 +64,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 15,
+        marginTop: 16,
     },
     infoContainer: {
         display: 'flex',
@@ -64,8 +74,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#BAB273',
         borderBottomWidth: 1,
         marginLeft: 15,
-        paddingBottom: 15,
-        width: '85%',
+        paddingBottom: 16,
+        width: '87%',
     },
     mainInfoContainer: {
         
@@ -73,10 +83,7 @@ const styles = StyleSheet.create({
     aditionalInfoContainer: {
         display: 'flex',
         alignItems: 'flex-end',
-        justifyContent: 'flex-start',
-        
-    },
-    imageContainer: {
+        justifyContent: 'flex-start',   
     },
     image: {
         width: 50,
@@ -84,4 +91,7 @@ const styles = StyleSheet.create({
         borderRadius: 50 / 2,
         resizeMode: 'cover',
     },
+    imageContainer: {
+        paddingBottom: 5,
+    }
 });
