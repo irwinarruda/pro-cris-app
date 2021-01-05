@@ -46,38 +46,46 @@ export function AuthProvider({children}) {
                     console.log(err);
                 });
             },
-            studentsAdd: (studentsObj) => {
+            studentsAdd: (studentsParam) => {
                 AsyncStorage.getItem('students')
                 .then((studentsArr) => {
                     const studentJson = JSON.parse(studentsArr);
                     console.log(studentJson); 
                     if(!studentJson) {
-                        setStudents([studentsObj]);
-                        AsyncStorage.setItem('students', JSON.stringify([studentsObj]));
+                        setStudents([studentsParam]);
+                        AsyncStorage.setItem('students', JSON.stringify([studentsParam]));
                     } else {
-                        setStudents([...studentJson, studentsObj]);
-                        AsyncStorage.setItem('students', JSON.stringify([...studentJson, studentsObj]));
+                        setStudents([...studentJson, studentsParam]);
+                        AsyncStorage.setItem('students', JSON.stringify([...studentJson, studentsParam]));
                     }
                 })
                 .catch((err) => {
                     console.error(err);
+                });
+            },
+            studentsAddArr: (studentsParamArr) => {
+                setStudents(studentsParamArr);
+                AsyncStorage.setItem('students', JSON.stringify(studentsParamArr));
+            },
+            studentsEdit: (studentsParam) => {
+                AsyncStorage.getItem('students')
+                .then((studentsArr) => {
+                    const studentJson = JSON.parse(studentsArr);
+                    console.log(studentJson); 
+                    if(!studentJson) {
+                        const newChangedStudentsArr = studentsJson.map((student) => {
+                            if(student.id === studentsParam.id) {
+                                return studentsParam;
+                            } 
+                            return student;
+                        })
+                        setStudents([...newChangedStudentsArr]);
+                        AsyncStorage.setItem('students', JSON.stringify([...newChangedStudentsArr]));
+                    } 
                 })
-            },
-            studentsAddArr: (studentsArr) => {
-                setStudents(studentsArr);
-                AsyncStorage.setItem('students', JSON.stringify(studentsArr));
-            },
-            studentsEdit: (studentsObj) => {
-                if(students.length === 0) {
-                    //error
-                } else {
-                    setStudents(students.map((student) => {
-                        if(student.id === studentsObj.id) {
-                            return studentsObj;
-                        } 
-                        return student;
-                    }));
-                }
+                .catch((err) => {
+                    console.error(err);
+                });
             },
             studentsDestroy: () => {
                 AsyncStorage.removeItem('students');

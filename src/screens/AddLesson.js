@@ -1,21 +1,31 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput, ScrollView, FlatList } from 'react-native';
 import globalStyles from '../components/globalStyles';
 import GoldButton from '../components/GoldButton';
 import ViewForm from '../components/ViewForm';
 import { Entypo } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
 import logo from '../../assets/20200926_165918.jpg';
 import { AuthContext } from '../components/AuthProvider';
+import RegisterStudentButton from '../components/RegisterStudentButton';
+
 
 
 
 export default function AddLesson({ navigation }) {
+    const [registerStudentModal, setRegisterStudentModal] = React.useState(false);
+    const [kidName, setKidName] = React.useState('');
+    const [dateBirth, setDateBirth] = React.useState('');
+    const [parentName, setParentName] = React.useState('');
+    const [phoneNumber, setPhoneNumber] = React.useState('');
+    const [houseNumber, setHouseNumber] = React.useState('');
+    const [price, setPrice] = React.useState('');
     const { students, studentsAdd, studentsEdit, studentsDelete, studentsDestroy } = React.useContext(AuthContext);
 
     function handlePress() {
-        //studentsDestroy()
+        studentsDestroy()
         //studentsDelete('4');
-        studentsAdd({
+        /* studentsAdd({
             id: '10',
             kidName: 'Irwin Arruda',
             dateObirth: '07/01/2000',
@@ -24,12 +34,28 @@ export default function AddLesson({ navigation }) {
             houseNumber: '904 torre Sul',
             givenClassesDate: ['07/01', '08/01', '09/01', '10/01'],
             price: 100,      
-        })
+        }) */
+    }
+    function createStudent() {
+        var precision = 10000; 
+        var randomnum = (Math.floor(Math.random() * (10 * precision - 1 * precision) + 1 * precision) / (1*precision)).toString();
+        const newStudentObj = {
+            id: randomnum,
+            kidName: kidName,
+            dateBirth: dateBirth,
+            parentName: parentName,
+            phoneNumber: phoneNumber,
+            houseNumber: houseNumber,
+            givenClasses: [],
+            price: price,   
+        }
+        studentsAdd(newStudentObj);
+        setRegisterStudentModal(false);
     }
     return (
-        <ViewForm style={styles.container}>
+        <View style={styles.container}>
             {/* <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" /> */}
-            {students? students.map((student) => (
+            {/* {students? students.map((student) => (
                 <TouchableOpacity key={student.id} style={styles.studentContainer}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.image} source={logo} />
@@ -40,31 +66,93 @@ export default function AddLesson({ navigation }) {
                             <Text style={globalStyles.bold_black_14_karla}>{student.houseNumber}</Text>
                         </View>
                         <View style={styles.aditionalInfoContainer}>
-                            <Text style={globalStyles.bold_black_12_karla}>A.D.: {student.givenClassesDate.length}</Text>
+                            <Text style={globalStyles.bold_black_12_karla}>A.D.: {student.givenClasses.length}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
-            )): null}
+            )): null} */}
+            {students? (<FlatList 
+                data={students}
+                renderItem={({item}) => (
+                    <TouchableOpacity style={styles.studentContainer}>
+                        <View style={styles.imageContainer}>
+                            <Image style={styles.image} source={logo} />
+                        </View>
+                        <View style={styles.infoContainer}>
+                            <View style={styles.mainInfoContainer}>
+                                <Text style={globalStyles.bold_black_18_karla}>{item.kidName}</Text>
+                                <Text style={globalStyles.bold_black_14_karla}>{item.houseNumber}</Text>
+                            </View>
+                            <View style={styles.aditionalInfoContainer}>
+                                <Text style={globalStyles.bold_black_12_karla}>A.D.: {item.givenClasses.length}</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>)}
+                keyExtractor={(item) => item.id}
+            />): null}
+            <Modal visible={registerStudentModal} animationType='slide'>
+                <ViewForm style={styles.modalContainer}>
+                    <TouchableOpacity onPress={() => setRegisterStudentModal(false)} activeOpacity={0.7}>
+                        <AntDesign name="closecircleo" size={50} color="#BAB273" />
+                    </TouchableOpacity>      
+                    <Text style={globalStyles.bold_black_18_karla}>Adicionar um Aluno</Text>
+                    <View style={styles.formContainer}>
+                        <View style={styles.inputContainer}>
+                            <Text style={globalStyles.bold_black_18_karla}>Nome do Aluno</Text>
+                            <TextInput style={styles.input} placeholder='eg. Cassiel Arruda' autoCapitalize='none' onChangeText={(val) => setKidName(val)}/>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={globalStyles.bold_black_18_karla}>Data de Nascimento</Text>
+                            <TextInput style={styles.input} placeholder='eg. 17/10/2006' keyboardType='phone-pad' onChangeText={(val) => setDateBirth(val)}/>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={globalStyles.bold_black_18_karla}>Nome do Responsável</Text>
+                            <TextInput style={styles.input} placeholder='eg. Cristiani Arruda' onChangeText={(val) => setParentName(val)}/>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={globalStyles.bold_black_18_karla}>Número do Telefone</Text>
+                            <TextInput style={styles.input} placeholder='eg. 62988880000' keyboardType='phone-pad' onChangeText={(val) => setPhoneNumber(val)}/>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={globalStyles.bold_black_18_karla}>Apartamento</Text>
+                            <TextInput style={styles.input} placeholder='eg. Apto. 90' onChangeText={(val) => setHouseNumber(val)}/>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={globalStyles.bold_black_18_karla}>Preço(reais)</Text>
+                            <TextInput style={styles.input} placeholder='eg. 75' keyboardType='phone-pad' onChangeText={(val) => setPrice(val)}/>
+                        </View>
+                        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={createStudent}>
+                            <Text style={globalStyles.bold_white_18_karla}>Adicionar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ViewForm>
+            </Modal>
+            <RegisterStudentButton onPress={() => setRegisterStudentModal(true)} />
             <GoldButton onPress={handlePress}>Delete</GoldButton>
-        </ViewForm>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#F3F2F7',
         alignItems: 'center',
         justifyContent: 'flex-start',
         width: '100%',
-        paddingHorizontal: 40,
+        paddingHorizontal: 0,
+        position: 'relative',
     },
     studentContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#F3F2F7',
         marginTop: 16,
+        paddingLeft: 30,
+        paddingRight: 55,
+        marginHorizontal: 0,
     },
     infoContainer: {
         display: 'flex',
@@ -93,5 +181,41 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         paddingBottom: 5,
-    }
+    },
+    modalContainer: {
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#F3F2F7',
+        paddingTop: 15,
+    },
+    formContainer: {
+        width: '80%',
+        marginBottom: 10,
+    },
+    inputContainer: {
+        marginTop: 5,
+    },
+    input: {
+        backgroundColor: '#9A8DD6',
+        borderRadius: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 7,
+        fontFamily: 'Karla_700Bold',
+        fontSize: 16,
+        color: '#FBFAFF',
+        marginTop: 0,
+    },
+    button: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        backgroundColor: '#2DCC69',
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 25,
+        marginTop: 20,
+    },
 });
