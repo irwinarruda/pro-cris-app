@@ -15,7 +15,6 @@ export function AuthProvider({children}) {
                 AsyncStorage.getItem('user')
                 .then((userStorage) => {
                     if(userStorage != null) {
-                        console.log(userStorage)
                         setUser(userStorage);
                     }
                 })
@@ -25,7 +24,7 @@ export function AuthProvider({children}) {
                 });
             },
             userLogin: (userObj) => {
-                setUser(userObj)
+                setUser(userObj);
                 AsyncStorage.setItem('user', JSON.stringify(userObj));
             },
             userLogout: (userObj) => {
@@ -39,7 +38,7 @@ export function AuthProvider({children}) {
                 AsyncStorage.getItem('students')
                 .then((studentsArr) => {
                     if(studentsArr) {
-                        console.log(JSON.parse(studentsArr));
+                        //console.log(JSON.parse(studentsArr));
                         setStudents(JSON.parse(studentsArr));
                     }
                 })
@@ -72,7 +71,6 @@ export function AuthProvider({children}) {
                 AsyncStorage.getItem('students')
                 .then((studentsArr) => {
                     const studentJson = JSON.parse(studentsArr);
-                    console.log(studentJson); 
                     if(!studentJson) {
                         const newChangedStudentsArr = studentsJson.map((student) => {
                             if(student.id === studentsParam.id) {
@@ -80,13 +78,13 @@ export function AuthProvider({children}) {
                             } 
                             return student;
                         })
-                        setStudents([...newChangedStudentsArr]);
-                        AsyncStorage.setItem('students', JSON.stringify([...newChangedStudentsArr]));
+                        setStudents([...newChangedStudentsArr]);     
                     } 
                 })
                 .catch((err) => {
                     console.error(err);
                 });
+                AsyncStorage.setItem('students', JSON.stringify([...students]));
             },
             studentsDestroy: () => {
                 AsyncStorage.removeItem('students');

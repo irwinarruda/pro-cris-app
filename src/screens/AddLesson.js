@@ -1,17 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput, ScrollView, FlatList } from 'react-native';
 import globalStyles from '../components/globalStyles';
-import GoldButton from '../components/GoldButton';
+import GreenButton from '../components/GreenButton';
+import RedButton from '../components/RedButton';
 import ViewForm from '../components/ViewForm';
 import { AntDesign } from '@expo/vector-icons'; 
-import logo from '../../assets/20200926_165918.jpg';
+import logo from '../../assets/18151751060402.jpg';
 import { AuthContext } from '../components/AuthProvider';
 import RegisterStudentButton from '../components/RegisterStudentButton';
-import AddNewClassModal from '../components/AddNewClassModal';
 
 export default function AddLesson({ navigation }) {
     const [registerStudentModal, setRegisterStudentModal] = React.useState(false);
-    const [addNewClassModal, setAddNewClassModal] = React.useState(true);
+    const [addNewClassModal, setAddNewClassModal] = React.useState(false);
+    const [addNewClassModalInfo, setAddNewClassModalInfo] = React.useState({});
+    const [date, setDate] = React.useState('');
     const [kidName, setKidName] = React.useState('');
     const [dateBirth, setDateBirth] = React.useState('');
     const [parentName, setParentName] = React.useState('');
@@ -21,20 +23,6 @@ export default function AddLesson({ navigation }) {
 
     const { students, studentsAdd, studentsEdit, studentsDelete, studentsDestroy } = React.useContext(AuthContext);
 
-    function handlePress() {
-        studentsDestroy()
-        //studentsDelete('4');
-        /* studentsAdd({
-            id: '10',
-            kidName: 'Irwin Arruda',
-            dateObirth: '07/01/2000',
-            parentName: 'Cristiani',
-            phoneNumber: '(62) 98888-8888',
-            houseNumber: '904 torre Sul',
-            givenClassesDate: ['07/01', '08/01', '09/01', '10/01'],
-            price: 100,      
-        }) */
-    }
     function createStudent() {
         var precision = 10000; 
         var randomnum = (Math.floor(Math.random() * (10 * precision - 1 * precision) + 1 * precision) / (1*precision)).toString();
@@ -51,15 +39,27 @@ export default function AddLesson({ navigation }) {
         studentsAdd(newStudentObj);
         setRegisterStudentModal(false);
     }
-    function handleStudentPress() {
 
+    function handleStudentPress(studentObj) {
+        let date = new Date().getDate();
+        let month = new Date().getMonth() + 1;
+        setDate(date + '/' + month);
+        setAddNewClassModal(true);
+        setAddNewClassModalInfo(studentObj);
+    }
+
+    function addDateToStudent() {
+        let studentObjInfo = addNewClassModalInfo;
+        studentObjInfo.givenClasses.push(date);
+        studentsEdit(studentObjInfo);
+        setAddNewClassModal(false);
     }
     return (
         <View style={styles.container}>
             {students? (<FlatList 
                 data={students}
                 renderItem={({item}) => (
-                    <TouchableOpacity style={styles.studentContainer} onPress={handleStudentPress}>
+                    <TouchableOpacity style={styles.studentContainer} onPress={() => handleStudentPress(item)}>
                         <View style={styles.imageContainer}>
                             <Image style={styles.image} source={logo} />
                         </View>
@@ -75,7 +75,24 @@ export default function AddLesson({ navigation }) {
                     </TouchableOpacity>)}
                 keyExtractor={(item) => item.id}
             />): null}
-            <AddNewClassModal visible={addNewClassModal}/>
+
+            <Modal visible={addNewClassModal} animationType='slide' transparent={true}>
+                <ViewForm style={styles.addClassContainer}>
+                    <View style={styles.addClassBoxContainer}>
+                        <View style={styles.addClassInfoContainer}>
+                            <Text style={globalStyles.bold_black_18_karla}>Adicionar aula para:</Text>
+                            <Text style={globalStyles.bold_black_16_karla}>{addNewClassModalInfo.kidName}</Text>
+                            <TextInput style={[styles.input, {marginTop: 10, paddingVertical: 2, paddingHorizontal: 10, textAlign: 'center'}]} placeholder='eg. 17/10' keyboardType='phone-pad' defaultValue={date} onChangeText={(val) => setDate(val)}/>
+                        </View>
+                        <View style={styles.addClassButtonContainer}>
+                            <GreenButton onPress={addDateToStudent}>Adicionar</GreenButton>
+                            <RedButton onPress={() => setAddNewClassModal(false)}>Fechar</RedButton> 
+                        </View>     
+                    </View>
+                </ViewForm>
+            </Modal>
+
+
             <Modal visible={registerStudentModal} animationType='slide'>
                 <ViewForm style={styles.modalContainer}>
                     <TouchableOpacity onPress={() => setRegisterStudentModal(false)} activeOpacity={0.3}>
@@ -120,6 +137,7 @@ export default function AddLesson({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+    /*Container dos alunos*/
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -168,6 +186,9 @@ const styles = StyleSheet.create({
     imageContainer: {
         paddingBottom: 5,
     },
+    /*Container dos alunos*/
+
+    /*Modal de adacionar alunos*/
     modalContainer: {
         display: 'flex', 
         alignItems: 'center', 
@@ -204,4 +225,45 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         marginTop: 20,
     },
+    /*Modal de adacionar alunos*/
+
+    /*Modal do box de adicionar aula*/
+    addClassContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+    },
+    addClassBoxContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        height: 170,
+        width: 300, 
+        paddingVertical: 15,
+        shadowColor: "#000",
+        borderColor: '#CCC591',
+        borderWidth: 2,
+        borderRadius: 10,
+        shadowOffset: {
+        width: 0,
+        height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    addClassInfoContainer: {
+        display: 'flex',
+        flex: 1,
+        alignItems: 'center',
+    },
+    addClassButtonContainer: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        flexDirection: 'row',
+    }
+    /*Modal do box de adicionar aula*/
 });

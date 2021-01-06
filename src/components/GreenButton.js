@@ -1,32 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import globalStyles from './globalStyles';
 
 export default function GoldButton(props) {
     return (
         <TouchableOpacity 
-            style={ styles.greenButtonYellow }
-            activeOpacity='0.7'
+            style={ styles.greenButton }
+            activeOpacity={0.7}
             {...props}
         >
-            <Text style={styles.greenButtonYellowText}>{ props.children }</Text>
+            <Text style={globalStyles.bold_white_14_karla}>{ props.children }</Text>
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
-    greenButtonYellowText: {
-        fontFamily: 'Yellowtail_400Regular',
-        fontSize: 14,
-        color: '#FBFAFF',
-    },
-    greenButtonYellow: {
+    greenButton: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 70,
+        width: 80,
         height: 30,
         paddingVertical: 5,
-        paddingHorizontal: 25,
+        paddingHorizontal: 5,
         backgroundColor: '#2DCC69',
         borderRadius: 5,
     },

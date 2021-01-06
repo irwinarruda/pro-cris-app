@@ -5,7 +5,7 @@ import logo from '../../assets/pro-cris-w.png';
 import LeaveHandler from './LeaveHandler';
 
 export default function Header({settingsChange}) {
-    const [settingsState, setSettingsState] = React.useState(false);
+    const [settingsState, setSettingsState] = React.useState(true);
     function configButtonPress() {
         setSettingsState(!settingsState);
     }
