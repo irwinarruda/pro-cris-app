@@ -2,9 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
 import logo from '../../assets/pro-cris-w.png';
-import ConfigButtonHandler from './ConfigButtonHandler';
 
-export default function HeaderConfig() {
+export default function Header() {
     const [configButton, setConfigButton] = React.useState(false);  
   
     function configButtonPress() {
@@ -20,9 +19,6 @@ export default function HeaderConfig() {
                     <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" />
                 </TouchableOpacity>
             </View>
-            {configButton? (
-                <ConfigButtonHandler currentPage={false} />
-            ): null}
         </View>    
     );
 }
