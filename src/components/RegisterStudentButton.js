@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 export default function RegisterStudentButton({onPress}) {
     return (
         <TouchableOpacity style={styles.registerContainer} activeOpacity={0.7} onPress={onPress}>
-            <AntDesign name="pluscircle" size={70} color="#BAB273" />
+            <AntDesign name="pluscircle" size={55} color="#BAB273" />
         </TouchableOpacity>
     );
 }

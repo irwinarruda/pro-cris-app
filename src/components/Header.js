@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
 import logo from '../../assets/pro-cris-w.png';
+import LeaveHandler from './LeaveHandler';
 
-export default function Header() {
-    const [configButton, setConfigButton] = React.useState(false);  
-  
+export default function Header({settingsChange}) {
+    const [settingsState, setSettingsState] = React.useState(false);
     function configButtonPress() {
-        setConfigButton(!configButton);
+        setSettingsState(!settingsState);
     }
     return (
         <View style={styles.containerHeader}>
@@ -19,6 +19,7 @@ export default function Header() {
                     <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" />
                 </TouchableOpacity>
             </View>
+            {!settingsState?(<LeaveHandler />): null}
         </View>    
     );
 }

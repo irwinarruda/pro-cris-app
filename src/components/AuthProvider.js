@@ -7,6 +7,7 @@ export function AuthProvider({children}) {
     const [user, setUser] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [students, setStudents] = React.useState([]);
+    const [settingsActive, setSettingsActive] = React.useState(false);
     return (
         <AuthContext.Provider value={{
             user,
@@ -90,38 +91,13 @@ export function AuthProvider({children}) {
             studentsDestroy: () => {
                 AsyncStorage.removeItem('students');
                 setStudents([]);
-            }
-            /* studentsAdd: (studentsObj) => {
-                if(students.length === 0) {
-                    setStudents([studentsObj]);
-                } else {
-                    setStudents([...students, studentsObj]);
-                }
             },
-            studentsAddArr: (studentsArr) => {
-                setStudents(studentsArr);
-                AsyncStorage.setItem('students', studentsArr);
+
+            settingsActive,
+            settingsChange: () => {
+                console.log(settingsActive);
+                setSettingsActive(!settingsActive);
             },
-            studentsEdit: (studentsObj) => {
-                if(students.length === 0) {
-                    //error
-                } else {
-                    setStudents(students.map((student) => {
-                        if(student.id === studentsObj.id) {
-                            return studentsObj;
-                        } 
-                        return student;
-                    }));
-                }
-            },
-            studentsDelete: (studentsId) => {
-                setStudents(students.filter((student) => {
-                    if(student.id !== studentsId) {
-                        return student;
-                    }
-                }));
-            }, */
-            
         }}>
             {children}
         </AuthContext.Provider>

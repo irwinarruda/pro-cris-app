@@ -1,17 +1,11 @@
 import React from 'react';
-import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import AddLesson from '../screens/AddLesson';
-import RemoveLesson from '../screens/RemoveLesson';
-import HeaderMain from '../components/HeaderMain';
-import HeaderConfig from '../components/HeaderConfig';
+import { createStackNavigator } from '@react-navigation/stack';
 import Header from '../components/Header';
-//import MainTabRoute from './MainTabRoute';
-
+import MainTabRoute from './MainTabRoute';
 
 const MainContentStack = createStackNavigator();
 
 export default function MainContentRoute() {
-    //const [animatedBar, setAnimatedBar] = React.useState(0);
 
     return (
         <MainContentStack.Navigator

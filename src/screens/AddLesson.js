@@ -3,23 +3,22 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput, Scro
 import globalStyles from '../components/globalStyles';
 import GoldButton from '../components/GoldButton';
 import ViewForm from '../components/ViewForm';
-import { Entypo } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import logo from '../../assets/20200926_165918.jpg';
 import { AuthContext } from '../components/AuthProvider';
 import RegisterStudentButton from '../components/RegisterStudentButton';
-
-
-
+import AddNewClassModal from '../components/AddNewClassModal';
 
 export default function AddLesson({ navigation }) {
     const [registerStudentModal, setRegisterStudentModal] = React.useState(false);
+    const [addNewClassModal, setAddNewClassModal] = React.useState(true);
     const [kidName, setKidName] = React.useState('');
     const [dateBirth, setDateBirth] = React.useState('');
     const [parentName, setParentName] = React.useState('');
     const [phoneNumber, setPhoneNumber] = React.useState('');
     const [houseNumber, setHouseNumber] = React.useState('');
     const [price, setPrice] = React.useState('');
+
     const { students, studentsAdd, studentsEdit, studentsDelete, studentsDestroy } = React.useContext(AuthContext);
 
     function handlePress() {
@@ -52,29 +51,15 @@ export default function AddLesson({ navigation }) {
         studentsAdd(newStudentObj);
         setRegisterStudentModal(false);
     }
+    function handleStudentPress() {
+
+    }
     return (
         <View style={styles.container}>
-            {/* <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" /> */}
-            {/* {students? students.map((student) => (
-                <TouchableOpacity key={student.id} style={styles.studentContainer}>
-                    <View style={styles.imageContainer}>
-                        <Image style={styles.image} source={logo} />
-                    </View>
-                    <View style={styles.infoContainer}>
-                        <View style={styles.mainInfoContainer}>
-                            <Text style={globalStyles.bold_black_18_karla}>{student.kidName}</Text>
-                            <Text style={globalStyles.bold_black_14_karla}>{student.houseNumber}</Text>
-                        </View>
-                        <View style={styles.aditionalInfoContainer}>
-                            <Text style={globalStyles.bold_black_12_karla}>A.D.: {student.givenClasses.length}</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-            )): null} */}
             {students? (<FlatList 
                 data={students}
                 renderItem={({item}) => (
-                    <TouchableOpacity style={styles.studentContainer}>
+                    <TouchableOpacity style={styles.studentContainer} onPress={handleStudentPress}>
                         <View style={styles.imageContainer}>
                             <Image style={styles.image} source={logo} />
                         </View>
@@ -90,9 +75,10 @@ export default function AddLesson({ navigation }) {
                     </TouchableOpacity>)}
                 keyExtractor={(item) => item.id}
             />): null}
+            <AddNewClassModal visible={addNewClassModal}/>
             <Modal visible={registerStudentModal} animationType='slide'>
                 <ViewForm style={styles.modalContainer}>
-                    <TouchableOpacity onPress={() => setRegisterStudentModal(false)} activeOpacity={0.7}>
+                    <TouchableOpacity onPress={() => setRegisterStudentModal(false)} activeOpacity={0.3}>
                         <AntDesign name="closecircleo" size={50} color="#BAB273" />
                     </TouchableOpacity>      
                     <Text style={globalStyles.bold_black_18_karla}>Adicionar um Aluno</Text>
@@ -128,7 +114,7 @@ export default function AddLesson({ navigation }) {
                 </ViewForm>
             </Modal>
             <RegisterStudentButton onPress={() => setRegisterStudentModal(true)} />
-            <GoldButton onPress={handlePress}>Delete</GoldButton>
+            {/* <GoldButton onPress={handlePress}>Delete</GoldButton> */}
         </View>
     );
 }
@@ -136,7 +122,7 @@ export default function AddLesson({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F3F2F7',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'flex-start',
         width: '100%',
@@ -148,7 +134,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F3F2F7',
+        backgroundColor: '#fff',
         marginTop: 16,
         paddingLeft: 30,
         paddingRight: 55,
@@ -187,7 +173,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         justifyContent: 'center',
         flex: 1,
-        backgroundColor: '#F3F2F7',
+        backgroundColor: '#fff',
         paddingTop: 15,
     },
     formContainer: {
