@@ -9,10 +9,10 @@ import logo from '../../assets/18151751060402.jpg';
 import { AuthContext } from '../components/AuthProvider';
 import RegisterStudentButton from '../components/RegisterStudentButton';
 
-export default function AddLesson({ navigation }) {
+export default function AddLesson() {
     const [registerStudentModal, setRegisterStudentModal] = React.useState(false);
-    const [addNewClassModal, setAddNewClassModal] = React.useState(false);
-    const [addNewClassModalInfo, setAddNewClassModalInfo] = React.useState({});
+    const [addNewLessonModal, setAddNewLessonModal] = React.useState(false);
+    const [addNewLessonModalInfo, setAddNewLessonModalInfo] = React.useState({});
     const [date, setDate] = React.useState('');
     const [kidName, setKidName] = React.useState('');
     const [dateBirth, setDateBirth] = React.useState('');
@@ -44,15 +44,15 @@ export default function AddLesson({ navigation }) {
         let date = new Date().getDate();
         let month = new Date().getMonth() + 1;
         setDate(date + '/' + month);
-        setAddNewClassModal(true);
-        setAddNewClassModalInfo(studentObj);
+        setAddNewLessonModal(true);
+        setAddNewLessonModalInfo(studentObj);
     }
 
     function addDateToStudent() {
-        let studentObjInfo = addNewClassModalInfo;
+        let studentObjInfo = addNewLessonModalInfo;
         studentObjInfo.givenClasses.push(date);
         studentsEdit(studentObjInfo);
-        setAddNewClassModal(false);
+        setAddNewLessonModal(false);
     }
     return (
         <View style={styles.container}>
@@ -76,17 +76,17 @@ export default function AddLesson({ navigation }) {
                 keyExtractor={(item) => item.id}
             />): null}
 
-            <Modal visible={addNewClassModal} animationType='slide' transparent={true}>
-                <ViewForm style={styles.addClassContainer}>
-                    <View style={styles.addClassBoxContainer}>
-                        <View style={styles.addClassInfoContainer}>
+            <Modal visible={addNewLessonModal} animationType='slide' transparent={true}>
+                <ViewForm style={styles.addLessonContainer}>
+                    <View style={styles.addLessonBoxContainer}>
+                        <View style={styles.addLessonInfoContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Adicionar aula para:</Text>
-                            <Text style={globalStyles.bold_black_16_karla}>{addNewClassModalInfo.kidName}</Text>
+                            <Text style={globalStyles.bold_black_16_karla}>{addNewLessonModalInfo.kidName}</Text>
                             <TextInput style={[styles.input, {marginTop: 10, paddingVertical: 2, paddingHorizontal: 10, textAlign: 'center'}]} placeholder='eg. 17/10' keyboardType='phone-pad' defaultValue={date} onChangeText={(val) => setDate(val)}/>
                         </View>
-                        <View style={styles.addClassButtonContainer}>
+                        <View style={styles.addLessonButtonContainer}>
                             <GreenButton onPress={addDateToStudent}>Adicionar</GreenButton>
-                            <RedButton onPress={() => setAddNewClassModal(false)}>Fechar</RedButton> 
+                            <RedButton onPress={() => setAddNewLessonModal(false)}>Fechar</RedButton> 
                         </View>     
                     </View>
                 </ViewForm>
@@ -228,13 +228,13 @@ const styles = StyleSheet.create({
     /*Modal de adacionar alunos*/
 
     /*Modal do box de adicionar aula*/
-    addClassContainer: {
+    addLessonContainer: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
     },
-    addClassBoxContainer: {
+    addLessonBoxContainer: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -254,12 +254,12 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
-    addClassInfoContainer: {
+    addLessonInfoContainer: {
         display: 'flex',
         flex: 1,
         alignItems: 'center',
     },
-    addClassButtonContainer: {
+    addLessonButtonContainer: {
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
