@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
-export default function ViewForm(props) {
+export default function ViewFormLogin(props) {
     function handlePressKeyboard() {
         Keyboard.dismiss();
     }

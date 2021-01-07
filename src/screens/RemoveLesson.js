@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput, FlatList, Alert, Dimensions } from 'react-native';
-import GreenButton from '../components/GreenButton';
-import RedButton from '../components/RedButton';
+import GreenButton from '../components/Buttons/GreenButton';
+import RedButton from '../components/Buttons/RedButton';
 import globalStyles from '../components/globalStyles';
-import ViewForm from '../components/ViewForm';
+import ViewForm from '../components/Views/ViewForm';
 import { AntDesign } from '@expo/vector-icons'; 
 import icon from '../../assets/18151751060402.jpg';
 import { AuthContext } from '../components/AuthProvider';
@@ -344,6 +344,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+        paddingTop: 15,
     },
     changeInfoBoxContainer: {
         display: 'flex',
@@ -372,6 +373,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+        marginTop: '12%',
     },
     lessonsArrBoxContainer: {
         display: 'flex',
@@ -384,7 +386,7 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
         shadowColor: "#000",
         borderColor: '#CCC591',
-        borderWidth: 4,
+        borderWidth: 6,
         borderRadius: 10,
         shadowOffset: {
             width: 0,

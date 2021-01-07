@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
-import logo from '../../assets/pro-cris-w.png';
-import ConfigButtonHandler from './ConfigButtonHandler';
+import logo from '../../../assets/pro-cris-w.png';
+import ConfigButtonHandler from '../Buttons/ConfigButtonHandler';
 
 export default function HeaderConfig() {
     const [configButton, setConfigButton] = React.useState(false);  

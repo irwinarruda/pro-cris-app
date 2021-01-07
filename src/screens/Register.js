@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import globalStyles from '../components/globalStyles';
 import logo from '../../assets/pro-cris-b.png';
-import GoldButton from '../components/GoldButton';
-import ViewForm from '../components/ViewForm';
+import GoldButton from '../components/Buttons/GoldButton';
+import ViewFormLogin from '../components/Views/ViewFormLogin';
 
 export default function Register({ navigation }) {
     const [nome, setNome] = React.useState('');
@@ -15,7 +15,7 @@ export default function Register({ navigation }) {
         navigation.navigate('Login');
     }
     return (
-        <ViewForm style={globalStyles.containerLoginRegister}>
+        <ViewFormLogin style={globalStyles.containerLoginRegister}>
             <Image source={logo} />
             <View style={styles.formContainer}>
                 <View style={styles.inputContainer}>
@@ -42,7 +42,7 @@ export default function Register({ navigation }) {
                 <Text style={globalStyles.bold_black_18_karla}>Já tem uma conta?</Text>
                 <Text style={globalStyles.bold_black_18_karla}>Clique Aqui</Text>
             </TouchableOpacity>
-        </ViewForm>
+        </ViewFormLogin>
     );
 }
 

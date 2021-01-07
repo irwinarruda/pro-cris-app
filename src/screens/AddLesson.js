@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput,  FlatList, Alert } from 'react-native';
 import globalStyles from '../components/globalStyles';
-import GreenButton from '../components/GreenButton';
-import RedButton from '../components/RedButton';
-import ViewForm from '../components/ViewForm';
+import GreenButton from '../components/Buttons/GreenButton';
+import RedButton from '../components/Buttons/RedButton';
+import ViewForm from '../components/Views/ViewForm';
 import { AntDesign } from '@expo/vector-icons'; 
 import logo from '../../assets/18151751060402.jpg';
 import { AuthContext } from '../components/AuthProvider';
-import RegisterStudentButton from '../components/RegisterStudentButton';
+import RegisterStudentButton from '../components/Buttons/RegisterStudentButton';
 
 export default function AddLesson() {
     const [registerStudentModal, setRegisterStudentModal] = React.useState(false);
@@ -21,7 +21,7 @@ export default function AddLesson() {
     const [houseNumber, setHouseNumber] = React.useState('');
     const [price, setPrice] = React.useState('');
 
-    const { students, studentsAdd, studentsEdit, studentsDelete, studentsDestroy } = React.useContext(AuthContext);
+    const { students, studentsAdd, studentsEdit } = React.useContext(AuthContext);
 
     function createStudent() {
         var precision = 10000; 
@@ -67,7 +67,6 @@ export default function AddLesson() {
                         <View style={styles.imageContainer}>
                             <Image style={styles.image} source={logo} />
                         </View>
-                        {console.log(item)}
                         <View style={styles.infoContainer}>
                             <View style={styles.mainInfoContainer}>
                                 <Text style={globalStyles.bold_black_18_karla}>{item.kidName}</Text>
@@ -234,6 +233,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+        marginTop: '50%',
     },
     addLessonBoxContainer: {
         display: 'flex',
@@ -248,8 +248,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 10,
         shadowOffset: {
-        width: 0,
-        height: 2
+            width: 0,
+            height: 2
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,

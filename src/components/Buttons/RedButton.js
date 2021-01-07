@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import globalStyles from './globalStyles';
+import globalStyles from '../globalStyles';
 
 export default function GoldButton(props) {
     return (
         <TouchableOpacity 
-            style={ styles.greenButton }
+            style={ styles.redButton }
             activeOpacity={0.7}
             {...props}
         >
@@ -15,7 +15,7 @@ export default function GoldButton(props) {
 }
 
 const styles = StyleSheet.create({
-    greenButton: {
+    redButton: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
         height: 30,
         paddingVertical: 5,
         paddingHorizontal: 5,
-        backgroundColor: '#2DCC69',
+        backgroundColor: '#FF2919',
         borderRadius: 5,
+        marginLeft: 10,
     },
 });

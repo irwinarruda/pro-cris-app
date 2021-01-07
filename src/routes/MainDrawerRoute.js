@@ -1,7 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainContentRoute from './MainContentRoute';
-import ConfigRoute from './ConfigRoute';
+//import ConfigRoute from './ConfigRoute';
 
 const MainDrawer = createDrawerNavigator();
 
@@ -14,7 +14,7 @@ export default function MainDrawerRoute() {
             }} 
         >
             <MainDrawer.Screen name='MainContentRoute' component={ MainContentRoute } />
-            <MainDrawer.Screen name='ConfigRoute' component={ ConfigRoute } />
+            {/* <MainDrawer.Screen name='ConfigRoute' component={ ConfigRoute } /> */}
         </MainDrawer.Navigator>
     );
 }

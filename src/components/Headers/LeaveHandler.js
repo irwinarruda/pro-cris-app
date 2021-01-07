@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Animated } from'react-native';
-import { AuthContext } from './AuthProvider';
-import globalStyles from './globalStyles';
+import { AuthContext } from '../AuthProvider';
+import globalStyles from '../globalStyles';
 
 export default function LeaveHandler({ currentPage }) {
     const fadeAnim = React.useRef(new Animated.Value(0)).current

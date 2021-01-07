@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "pro-cris-app-v1",
+    "name": "Prô Cris App",
     "slug": "pro-cris-app-v1",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -20,10 +20,12 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "host.irwinnism.procrisapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

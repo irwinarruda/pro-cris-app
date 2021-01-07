@@ -7,7 +7,6 @@ export function AuthProvider({children}) {
     const [user, setUser] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [students, setStudents] = React.useState([]);
-    const [settingsActive, setSettingsActive] = React.useState(false);
     return (
         <AuthContext.Provider value={{
             user,
@@ -109,12 +108,6 @@ export function AuthProvider({children}) {
             studentsDestroy: () => {
                 AsyncStorage.removeItem('students');
                 setStudents([]);
-            },
-
-            settingsActive,
-            settingsChange: () => {
-                //console.log(settingsActive);
-                setSettingsActive(!settingsActive);
             },
         }}>
             {children}

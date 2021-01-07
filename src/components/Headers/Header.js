@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
-import logo from '../../assets/pro-cris-w.png';
+import logo from '../../../assets/pro-cris-w.png';
 import LeaveHandler from './LeaveHandler';
 
-export default function Header({settingsChange}) {
+export default function Header() {
     const [settingsState, setSettingsState] = React.useState(true);
     function configButtonPress() {
         setSettingsState(!settingsState);

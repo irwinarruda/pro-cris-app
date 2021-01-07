@@ -8,7 +8,8 @@ const globalStyles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 30,
         paddingTop: 45,
-        backgroundColor: '#FBFAFF',
+        backgroundColor: '#fff',
+        //backgroundColor: '#FBFAFF',
     },
     bold_black_24_karla: {
         fontFamily: 'Karla_700Bold',

@@ -1,15 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import globalStyles from '../components/globalStyles';
 import logo from '../../assets/pro-cris-b.png';
-import GoldButton from '../components/GoldButton';
-import ViewForm from '../components/ViewForm';
+import GoldButton from '../components/Buttons/GoldButton';
+import ViewFormLogin from '../components/Views/ViewFormLogin';
 import { AuthContext } from '../components/AuthProvider';
 
 export default function Login({ navigation }) {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const { loading, user, userLogin, userLogout, userIsLoged, students, studentsAdd, studentsEdit, studentsDelete, studentsAddArr, studentsGet } = React.useContext(AuthContext);
+    const { userLogin } = React.useContext(AuthContext);
     function handlePressCriar() {
         navigation.navigate('Register');
     }
@@ -17,7 +17,7 @@ export default function Login({ navigation }) {
         userLogin({ username: email, arr: password})
     }
     return (
-        <ViewForm style={globalStyles.containerLoginRegister}>
+        <ViewFormLogin style={globalStyles.containerLoginRegister}>
             <Image source={logo} style={styles.image}/>
             <View style={styles.formContainer}>
                 <View style={styles.inputContainer}>
@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
             <TouchableOpacity  style={styles.criarContainer} activeOpacity={0.7} onPress={handlePressCriar}>
                 <Text style={globalStyles.bold_black_18_karla}>Criar Conta</Text>
             </TouchableOpacity>
-        </ViewForm>
+        </ViewFormLogin>
     );
 }
 

@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from'react-native';
-import { AuthContext } from './AuthProvider';
-import globalStyles from './globalStyles';
+import { Text, TouchableOpacity, StyleSheet, Animated } from'react-native';
+import { AuthContext } from '../AuthProvider';
+import globalStyles from '../globalStyles';
 
 export default function ConfigButtonHandler({ currentPage }) {
     const fadeAnim = React.useRef(new Animated.Value(0)).current
