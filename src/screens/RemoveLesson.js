@@ -149,16 +149,14 @@ export default function RemoveLesson() {
                                 <Text style={globalStyles.bold_black_14_karla}>{item.parentName}: {item.phoneNumber}</Text>
                                 <Text style={globalStyles.bold_black_12_karla}>Aulas Dadas: {item.givenClasses.length}</Text>
                             </View>
-                            <View style={styles.aditionalInfoContainer}>
-                                <TouchableOpacity activeOpacity={0.4} style={styles.aditionalInfoIcon} onPress={() => handleStudentInfoPress(item)}>
-                                    <Entypo name="dots-three-vertical" size={24} color="#BAB273" />
-                                </TouchableOpacity>
-                            </View>
+                            <TouchableOpacity activeOpacity={0.4} style={styles.aditionalInfoIcon} onPress={() => handleStudentInfoPress(item)}>
+                                <Entypo name="dots-three-vertical" size={24} color="#BAB273" />
+                            </TouchableOpacity>
                         </View>
                     </TouchableOpacity>)}
                 keyExtractor={(item) => item.id}
             />): null}
-            <Modal visible={lessonsArrModal} animationType='slide' transparent={true}>
+            <Modal visible={lessonsArrModal} animationType='slide' transparent={true} onRequestClose={() => setLessonsArrModal(false)}>
                 <ViewForm style={styles.lessonsArrContainer}>
                     <View style={styles.lessonsArrBoxContainer}>
                         <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
@@ -186,7 +184,7 @@ export default function RemoveLesson() {
                     </View>
                 </ViewForm>
             </Modal>
-            <Modal visible={studentInfoModal} animationType='slide' transparent={false}>
+            <Modal visible={studentInfoModal} animationType='slide' transparent={false} onRequestClose={() => setStudentInfoModal(false)}>
                 <ViewForm style={styles.changeInfoContainer}>
                     <TouchableOpacity onPress={() => setStudentInfoModal(false)} activeOpacity={0.3}>
                         <AntDesign name="closecircleo" size={50} color="#BAB273" />
@@ -262,18 +260,17 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         marginLeft: 15,
         paddingBottom: 10,
-        width: '87%',
+        width: '85%',
     },
     aditionalInfoIcon: {
-        paddingLeft: 7,
-        paddingRight: 0,
         paddingVertical: 10,
-        //backgroundColor: 'tomato',
-    },  
-    aditionalInfoContainer: {
         display: 'flex',
         alignItems: 'flex-end',
-        justifyContent: 'flex-start',   
+        justifyContent: 'flex-start', 
+        width: '15%', 
+    },  
+    mainInfoContainer: {
+        width: '85%',
     },
     image: {
         width: 50,

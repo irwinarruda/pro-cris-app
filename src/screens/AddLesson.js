@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput,  FlatList, Alert } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput,  FlatList, Alert, Dimensions } from 'react-native';
 import globalStyles from '../components/globalStyles';
 import GreenButton from '../components/Buttons/GreenButton';
 import RedButton from '../components/Buttons/RedButton';
@@ -19,7 +19,7 @@ export default function AddLesson() {
     const [parentName, setParentName] = React.useState('');
     const [phoneNumber, setPhoneNumber] = React.useState('');
     const [houseNumber, setHouseNumber] = React.useState('');
-    const [price, setPrice] = React.useState('');
+    const [price, setPrice] = React.useState('0');
 
     const { students, studentsAdd, studentsEdit } = React.useContext(AuthContext);
 
@@ -80,7 +80,7 @@ export default function AddLesson() {
                 keyExtractor={(item) => item.id}
             />): null}
 
-            <Modal visible={addNewLessonModal} animationType='slide' transparent={true}>
+            <Modal visible={addNewLessonModal} animationType='slide' transparent={true} onRequestClose={() => setAddNewLessonModal(false)}>
                 <ViewForm style={styles.addLessonContainer}>
                     <View style={styles.addLessonBoxContainer}>
                         <View style={styles.addLessonInfoContainer}>
@@ -97,7 +97,7 @@ export default function AddLesson() {
             </Modal>
 
 
-            <Modal visible={registerStudentModal} animationType='slide'>
+            <Modal visible={registerStudentModal} animationType='slide' onRequestClose={() => setRegisterStudentModal(false)}>
                 <ViewForm style={styles.modalContainer}>
                     <TouchableOpacity onPress={() => setRegisterStudentModal(false)} activeOpacity={0.3}>
                         <AntDesign name="closecircleo" size={50} color="#BAB273" />
@@ -170,12 +170,16 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         marginLeft: 15,
         paddingBottom: 16,
-        width: '87%',
+        width: '85%',
+    },
+    mainInfoContainer: {
+        width: '85%',
     },
     aditionalInfoContainer: {
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'flex-start',   
+        width: '15%',
     },
     image: {
         width: 50,
