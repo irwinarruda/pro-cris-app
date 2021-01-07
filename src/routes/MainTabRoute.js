@@ -1,11 +1,8 @@
 import React from 'react';
-//import { Dimensions, Animated } from 'react-native';
-//import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AddLesson from '../screens/AddLesson';
 import RemoveLesson from '../screens/RemoveLesson';
-import HeaderMain from '../components/HeaderMain';
 
 
 const MainContentTab = createMaterialTopTabNavigator();

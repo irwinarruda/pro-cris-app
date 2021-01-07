@@ -15,7 +15,7 @@ export default function Header({settingsChange}) {
                 <View>
                     <Image style={styles.logoImage} source={logo} />
                 </View>
-                <TouchableOpacity activeOpacity={0.4} onPress={configButtonPress}>
+                <TouchableOpacity style={{paddingLeft: 20, paddingRight: 0, paddingVertical: 5,}} activeOpacity={0.4} onPress={configButtonPress}>
                     <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" />
                 </TouchableOpacity>
             </View>

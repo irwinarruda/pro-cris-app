@@ -2,7 +2,6 @@ import React from 'react';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import UserConfig from '../screens/UserConfig';
 import HeaderConfig from '../components/HeaderConfig';
-//import { NavigationContainer } from '@react-navigation/native';
 
 const ConfigStack = createStackNavigator();
 

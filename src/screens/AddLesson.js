@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Modal, TextInput,  FlatList, Alert } from 'react-native';
 import globalStyles from '../components/globalStyles';
 import GreenButton from '../components/GreenButton';
 import RedButton from '../components/RedButton';
@@ -38,11 +38,14 @@ export default function AddLesson() {
         }
         studentsAdd(newStudentObj);
         setRegisterStudentModal(false);
+        Alert.alert('Criar Aluno', 'Aluno Criado com sucesso');
     }
 
     function handleStudentPress(studentObj) {
         let date = new Date().getDate();
         let month = new Date().getMonth() + 1;
+        if(date < 10) date = '0' + date;
+        if(month < 10) month = '0' + month;
         setDate(date + '/' + month);
         setAddNewLessonModal(true);
         setAddNewLessonModalInfo(studentObj);
@@ -52,6 +55,7 @@ export default function AddLesson() {
         let studentObjInfo = addNewLessonModalInfo;
         studentObjInfo.givenClasses.push(date);
         studentsEdit(studentObjInfo);
+        Alert.alert('Aula Cadastrada com Sucesso');
         setAddNewLessonModal(false);
     }
     return (
@@ -63,6 +67,7 @@ export default function AddLesson() {
                         <View style={styles.imageContainer}>
                             <Image style={styles.image} source={logo} />
                         </View>
+                        {console.log(item)}
                         <View style={styles.infoContainer}>
                             <View style={styles.mainInfoContainer}>
                                 <Text style={globalStyles.bold_black_18_karla}>{item.kidName}</Text>
@@ -131,7 +136,6 @@ export default function AddLesson() {
                 </ViewForm>
             </Modal>
             <RegisterStudentButton onPress={() => setRegisterStudentModal(true)} />
-            {/* <GoldButton onPress={handlePress}>Delete</GoldButton> */}
         </View>
     );
 }
@@ -168,9 +172,6 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         paddingBottom: 16,
         width: '87%',
-    },
-    mainInfoContainer: {
-        
     },
     aditionalInfoContainer: {
         display: 'flex',

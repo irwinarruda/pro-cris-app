@@ -4,12 +4,17 @@ import globalStyles from '../components/globalStyles';
 import logo from '../../assets/pro-cris-b.png';
 import GoldButton from '../components/GoldButton';
 import ViewForm from '../components/ViewForm';
+import { AuthContext } from '../components/AuthProvider';
 
 export default function Login({ navigation }) {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const { loading, user, userLogin, userLogout, userIsLoged, students, studentsAdd, studentsEdit, studentsDelete, studentsAddArr, studentsGet } = React.useContext(AuthContext);
     function handlePressCriar() {
         navigation.navigate('Register');
+    }
+    function handleLogin() {
+        userLogin({ username: email, arr: password})
     }
     return (
         <ViewForm style={globalStyles.containerLoginRegister}>
@@ -25,7 +30,7 @@ export default function Login({ navigation }) {
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <GoldButton>Entrar</GoldButton>
+                <GoldButton onPress={handleLogin}>Entrar</GoldButton>
             </View>
 
             <TouchableOpacity  style={styles.criarContainer} activeOpacity={0.7} onPress={handlePressCriar}>

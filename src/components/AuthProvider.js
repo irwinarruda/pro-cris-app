@@ -11,6 +11,7 @@ export function AuthProvider({children}) {
     return (
         <AuthContext.Provider value={{
             user,
+            loading,
             userIsLoged: () => {               
                 AsyncStorage.getItem('user')
                 .then((userStorage) => {
@@ -18,7 +19,7 @@ export function AuthProvider({children}) {
                         setUser(userStorage);
                     }
                 })
-                .catch(err => console.log(err))
+                .catch(err => console.error(err))
                 .finally(() => {
                     setLoading(false);
                 });
@@ -38,19 +39,17 @@ export function AuthProvider({children}) {
                 AsyncStorage.getItem('students')
                 .then((studentsArr) => {
                     if(studentsArr) {
-                        //console.log(JSON.parse(studentsArr));
                         setStudents(JSON.parse(studentsArr));
                     }
                 })
                 .catch((err) => {
-                    console.log(err);
+                    console.error(err);
                 });
             },
             studentsAdd: (studentsParam) => {
                 AsyncStorage.getItem('students')
                 .then((studentsArr) => {
                     const studentJson = JSON.parse(studentsArr);
-                    console.log(studentJson); 
                     if(!studentJson) {
                         setStudents([studentsParam]);
                         AsyncStorage.setItem('students', JSON.stringify([studentsParam]));
@@ -71,14 +70,35 @@ export function AuthProvider({children}) {
                 AsyncStorage.getItem('students')
                 .then((studentsArr) => {
                     const studentJson = JSON.parse(studentsArr);
-                    if(!studentJson) {
-                        const newChangedStudentsArr = studentsJson.map((student) => {
+                    if(studentJson) {
+                        const newChangedStudentsArr = studentJson.map((student) => {
                             if(student.id === studentsParam.id) {
                                 return studentsParam;
                             } 
                             return student;
                         })
                         setStudents([...newChangedStudentsArr]);     
+                        AsyncStorage.setItem('students', JSON.stringify([...newChangedStudentsArr]));
+                    } 
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+                AsyncStorage.setItem('students', JSON.stringify([...students]));
+            },
+            studentsDelete: (studentsParam) => {
+                AsyncStorage.getItem('students')
+                .then((studentsArr) => {
+                    const studentJson = JSON.parse(studentsArr);
+                    if(studentJson) {
+                        let newChangedStudentsArr = []
+                        for(let i = 0; i < studentJson.length; i++) {       
+                            if(studentsParam.id !== studentJson[i].id) {
+                                newChangedStudentsArr.push(studentJson[i]);
+                            } 
+                        }
+                        setStudents([...newChangedStudentsArr]);     
+                        AsyncStorage.setItem('students', JSON.stringify([...newChangedStudentsArr]));
                     } 
                 })
                 .catch((err) => {
@@ -93,7 +113,7 @@ export function AuthProvider({children}) {
 
             settingsActive,
             settingsChange: () => {
-                console.log(settingsActive);
+                //console.log(settingsActive);
                 setSettingsActive(!settingsActive);
             },
         }}>
