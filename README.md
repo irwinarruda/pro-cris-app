@@ -1,7 +1,8 @@
-# Prô Criss App
+# Prô Cris App
 
 Esse aplicativo é uma tentativa de solução para professores que dão aula particular e precisam registrar os dias das aulas dadas.
 
+## Essa branch é para celulares com fontes maiores que a normal (a tentativa é neutraliza-las)
 ## Primeira versão
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://expo.io/@irwinarruda/projects/pro-cris-app-v1)
 ### Features
