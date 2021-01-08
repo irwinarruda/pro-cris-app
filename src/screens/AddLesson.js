@@ -86,7 +86,7 @@ export default function AddLesson() {
                         <View style={styles.addLessonInfoContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Adicionar aula para:</Text>
                             <Text style={globalStyles.bold_black_16_karla}>{addNewLessonModalInfo.kidName}</Text>
-                            <TextInput style={[styles.input, {marginTop: 10, paddingVertical: 2, paddingHorizontal: 10, textAlign: 'center'}]} placeholder='eg. 17/10' keyboardType='phone-pad' defaultValue={date} onChangeText={(val) => setDate(val)}/>
+                            <TextInput style={[styles.input, {marginTop: 20, paddingVertical: 2, paddingHorizontal: 10, textAlign: 'center', fontSize: 12}]} placeholder='eg. 17/10' keyboardType='phone-pad' defaultValue={date} onChangeText={(val) => setDate(val)}/>
                         </View>
                         <View style={styles.addLessonButtonContainer}>
                             <GreenButton onPress={addDateToStudent}>Adicionar</GreenButton>
@@ -99,7 +99,7 @@ export default function AddLesson() {
 
             <Modal visible={registerStudentModal} animationType='slide' onRequestClose={() => setRegisterStudentModal(false)}>
                 <ViewForm style={styles.modalContainer}>
-                    <TouchableOpacity onPress={() => setRegisterStudentModal(false)} activeOpacity={0.3}>
+                    <TouchableOpacity style={{marginTop: 30,}} onPress={() => setRegisterStudentModal(false)} activeOpacity={0.3}>
                         <AntDesign name="closecircleo" size={50} color="#BAB273" />
                     </TouchableOpacity>      
                     <Text style={globalStyles.bold_black_18_karla}>Adicionar um Aluno</Text>
@@ -173,13 +173,13 @@ const styles = StyleSheet.create({
         width: '85%',
     },
     mainInfoContainer: {
-        width: '85%',
+        width: '80%',
     },
     aditionalInfoContainer: {
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'flex-start',   
-        width: '15%',
+        width: '20%',
     },
     image: {
         width: 50,
@@ -214,7 +214,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 7,
         fontFamily: 'Karla_700Bold',
-        fontSize: 16,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 14,
         color: '#FBFAFF',
         marginTop: 0,
     },
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#fff',
-        height: 170,
+        height: 200,
         width: 300, 
         paddingVertical: 15,
         shadowColor: "#000",

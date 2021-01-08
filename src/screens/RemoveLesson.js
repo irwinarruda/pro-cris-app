@@ -164,18 +164,18 @@ export default function RemoveLesson() {
                             <Text style={[globalStyles.bold_black_18_karla, {marginTop: -10,}]}>Aulas dadas para o Aluno: </Text>
                             <Text style={globalStyles.bold_black_18_karla}>{lessonsArr.kidName}</Text>
                         </View>
-                        <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap'}}>
+                        <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 4,}}>
                             {singleStudentArr?singleStudentArr.map((item) => {
-                                var precision = 10000; 
+                                var precision = 1000000; 
                                 var randomnum = (Math.floor(Math.random() * (10 * precision - 1 * precision) + 1 * precision) / (1*precision)).toString();
                                 return (
                                     <TouchableOpacity style={styles.datasBox}  activeOpacity={0.5} onPress={() => removeSingeItemArr(item)} key={randomnum} >
-                                        <Text style={[globalStyles.bold_white_18_karla]} >
+                                        <Text style={[globalStyles.bold_white_14_karla]} >
                                             {item}
                                         </Text>
                                     </TouchableOpacity>
                                 );
-                            }): null}
+                            }): null}                          
                         </View>
                         <View style={styles.lessonsArrButtonContainer}>
                             <GreenButton onPress={removeArr}>Pago</GreenButton>
@@ -186,7 +186,7 @@ export default function RemoveLesson() {
             </Modal>
             <Modal visible={studentInfoModal} animationType='slide' transparent={false} onRequestClose={() => setStudentInfoModal(false)}>
                 <ViewForm style={styles.changeInfoContainer}>
-                    <TouchableOpacity onPress={() => setStudentInfoModal(false)} activeOpacity={0.3}>
+                    <TouchableOpacity style={{marginTop: 30,}} onPress={() => setStudentInfoModal(false)} activeOpacity={0.3}>
                         <AntDesign name="closecircleo" size={50} color="#BAB273" />
                     </TouchableOpacity> 
                     <Text style={globalStyles.bold_black_18_karla}>Modificar Aluno</Text>
@@ -267,10 +267,10 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'flex-start', 
-        width: '15%', 
+        width: '20%', 
     },  
     mainInfoContainer: {
-        width: '85%',
+        width: '80%',
     },
     image: {
         width: 50,
@@ -318,7 +318,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 7,
         fontFamily: 'Karla_700Bold',
-        fontSize: 16,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 14,
         color: '#FBFAFF',
         marginTop: 0,
     },
@@ -408,9 +409,9 @@ const styles = StyleSheet.create({
     datasBox: {
         backgroundColor: '#9A8DD6', 
         borderRadius: 5, 
-        marginHorizontal: 2, 
-        marginBottom: 3, 
+        marginHorizontal: 3, 
+        marginBottom: 4, 
         paddingVertical: 2, 
-        paddingHorizontal: 3,
+        paddingHorizontal: 5,
     }
 });

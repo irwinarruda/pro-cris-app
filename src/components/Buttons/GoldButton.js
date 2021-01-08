@@ -16,7 +16,8 @@ export default function GoldButton(props) {
 const styles = StyleSheet.create({
     goldButtonYellowText: {
         fontFamily: 'Yellowtail_400Regular',
-        fontSize: 48,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 30,
         color: '#FBFAFF',
     },
     goldButtonYellow: {

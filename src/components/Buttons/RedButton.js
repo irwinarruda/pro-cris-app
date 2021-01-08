@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 80,
+        /*Esse item foi modificado para telas com letras maiores*/
+        width: 100,
         height: 30,
         paddingVertical: 5,
         paddingHorizontal: 5,

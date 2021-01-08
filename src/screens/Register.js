@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         fontFamily: 'Karla_700Bold',
-        fontSize: 20,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 18,
         color: '#FBFAFF',
         marginTop: 0,
     },
