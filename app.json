@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Prô Cris App",
-    "slug": "pro-cris-app-v1",
+    "name": "Prô Cris App (Big Text Version)",
+    "slug": "pro-cris-app-v1-big-text",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
