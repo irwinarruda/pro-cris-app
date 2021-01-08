@@ -12,12 +12,11 @@ import logo from '../../assets/pro-cris-b.png';
 
 export default function RemoveLesson() {
     const [studentInfoModal, setStudentInfoModal] = React.useState(false);
+    const [lessonsArrModal, setLessonsArrModal] = React.useState(false);
     const [studentInfo, setStudentInfo] = React.useState({});
+    const [singleStudentArr, setSingleStudentArr] = React.useState([]);
     const [saldo, setSaldo] = React.useState(0);
     const [saldoStatus, setSaldoStatus] = React.useState(false);
-    const [lessonsArr, setLessonsArr] = React.useState({});
-    const [lessonsArrModal, setLessonsArrModal] = React.useState(false);
-    const [singleStudentArr, setSingleStudentArr] = React.useState([]);
 
     const { students, studentsEdit, studentsDelete } = React.useContext(AuthContext);
 
@@ -27,7 +26,7 @@ export default function RemoveLesson() {
     }
 
     function handleStudentPress(studentObj) {
-        setLessonsArr(studentObj);
+        setStudentInfo(studentObj);
         setSingleStudentArr(studentObj.givenClasses);
         setLessonsArrModal(true);
     }
@@ -70,7 +69,7 @@ export default function RemoveLesson() {
                 {
                     text: "Sim",
                     onPress: () => {
-                        let newStudentInfo = {...lessonsArr};
+                        let newStudentInfo = {...studentInfo};
                         newStudentInfo.givenClasses = [];
                         setLessonsArrModal(false);
                         studentsEdit(newStudentInfo);
@@ -93,7 +92,7 @@ export default function RemoveLesson() {
                 {
                     text: "Sim",
                     onPress: () => {
-                        let newStudentInfo = {...lessonsArr};
+                        let newStudentInfo = {...studentInfo};
                         let newArr = []
                         var onlyOneOutCheck = false;
                         for(let i = 0; i < singleStudentArr.length; i++) {       
@@ -161,8 +160,10 @@ export default function RemoveLesson() {
                     <View style={styles.lessonsArrBoxContainer}>
                         <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                             <Image style={styles.logoImagePrint} source={logo} />
-                            <Text style={[globalStyles.bold_black_18_karla, {marginTop: -10,}]}>Aulas dadas para o Aluno: </Text>
-                            <Text style={globalStyles.bold_black_18_karla}>{lessonsArr.kidName}</Text>
+                            {singleStudentArr.length !== 1? 
+                            <Text style={[globalStyles.bold_black_18_karla, {marginTop: -10,}]}>{singleStudentArr.length} aulas dadas para o(a) Aluno(a): </Text>: 
+                            <Text style={[globalStyles.bold_black_18_karla, {marginTop: -10,}]}>1 aula dada para o(a) Aluno(a): </Text>}
+                            <Text style={globalStyles.bold_black_18_karla}>{studentInfo.kidName}</Text>
                         </View>
                         <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap'}}>
                             {singleStudentArr?singleStudentArr.map((item) => {
