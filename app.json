@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "host.irwinnism.procrisapp"
+      "package": "host.irwinnism.procrisappbigtext"
     },
     "web": {
       "favicon": "./assets/favicon.png"
