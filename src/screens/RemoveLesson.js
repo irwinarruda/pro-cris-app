@@ -9,9 +9,10 @@ import icon from '../../assets/18151751060402.jpg';
 import { AuthContext } from '../components/AuthProvider';
 import { Entypo } from '@expo/vector-icons'; 
 import logo from '../../assets/pro-cris-b.png';
+import randomKeyGenerator from '../components/randomKeyGenerator';
 
 export default function RemoveLesson() {
-    const [studentInfoModal, setStudentInfoModal] = React.useState(false);
+    const [studentSettingsModal, setStudentSettingsModal] = React.useState(false);
     const [lessonsArrModal, setLessonsArrModal] = React.useState(false);
     const [studentInfo, setStudentInfo] = React.useState({});
     const [singleStudentArr, setSingleStudentArr] = React.useState([]);
@@ -22,7 +23,7 @@ export default function RemoveLesson() {
 
     function handleStudentInfoPress(studentObj) {
         setStudentInfo(studentObj);
-        setStudentInfoModal(true);
+        setStudentSettingsModal(true);
     }
 
     function handleStudentPress(studentObj) {
@@ -33,7 +34,7 @@ export default function RemoveLesson() {
 
     function editStudent() {
         let newStudentInfo = {...studentInfo};
-        setStudentInfoModal(false);
+        setStudentSettingsModal(false);
         studentsEdit(newStudentInfo);
         Alert.alert('Editar Aluno', 'Aluno Editado com sucesso');
     }
@@ -47,7 +48,7 @@ export default function RemoveLesson() {
                     text: "Sim",
                     onPress: () => {
                         let newStudentInfo = {...studentInfo};
-                        setStudentInfoModal(false);
+                        setStudentSettingsModal(false);
                         studentsDelete(newStudentInfo);
                         Alert.alert('Remover Aluno', 'Aluno removido com sucesso');
                     }
@@ -64,7 +65,7 @@ export default function RemoveLesson() {
     function removeArr() {
         Alert.alert(
             'Deletar Aulas',
-            'Deseja deletar as aulas dadas dos seu aluno?',
+            'Deseja deletar as aulas dadas para esse aluno?',
             [
                 {
                     text: "Sim",
@@ -132,7 +133,7 @@ export default function RemoveLesson() {
         <View style={styles.container}>
             <TouchableOpacity onPress={priceHandler}>
                 {saldoStatus?
-                (<View style={styles.saldoContainer}><Text style={globalStyles.bold_black_18_karla}>Saldo: {saldo? saldo: null}</Text></View>)
+                (<View style={styles.saldoContainer}><Text style={globalStyles.bold_black_18_karla}>Saldo: {saldo? saldo: 0}</Text></View>)
                :(<View style={styles.saldoContainer}><Text style={globalStyles.bold_black_18_karla}>Saldo: </Text><AntDesign name="caretup" size={18} color="#353440" /></View>)}
             </TouchableOpacity>
             {students? (<FlatList 
@@ -167,8 +168,7 @@ export default function RemoveLesson() {
                         </View>
                         <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap'}}>
                             {singleStudentArr?singleStudentArr.map((item) => {
-                                var precision = 10000; 
-                                var randomnum = (Math.floor(Math.random() * (10 * precision - 1 * precision) + 1 * precision) / (1*precision)).toString();
+                                var randomnum = randomKeyGenerator();
                                 return (
                                     <TouchableOpacity style={styles.datasBox}  activeOpacity={0.5} onPress={() => removeSingeItemArr(item)} key={randomnum} >
                                         <Text style={[globalStyles.bold_white_18_karla]} >
@@ -185,9 +185,9 @@ export default function RemoveLesson() {
                     </View>
                 </ViewForm>
             </Modal>
-            <Modal visible={studentInfoModal} animationType='slide' transparent={false} onRequestClose={() => setStudentInfoModal(false)}>
+            <Modal visible={studentSettingsModal} animationType='slide' transparent={false} onRequestClose={() => setStudentSettingsModal(false)}>
                 <ViewForm style={styles.changeInfoContainer}>
-                    <TouchableOpacity onPress={() => setStudentInfoModal(false)} activeOpacity={0.3}>
+                    <TouchableOpacity onPress={() => setStudentSettingsModal(false)} activeOpacity={0.3}>
                         <AntDesign name="closecircleo" size={50} color="#BAB273" />
                     </TouchableOpacity> 
                     <Text style={globalStyles.bold_black_18_karla}>Modificar Aluno</Text>
@@ -268,10 +268,10 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'flex-start', 
-        width: '15%', 
+        width: '20%', 
     },  
     mainInfoContainer: {
-        width: '85%',
+        width: '80%',
     },
     image: {
         width: 50,
@@ -378,7 +378,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#fff',
-        height: 350,
+        minHeight: 310,
+        maxHeight: 380,
         width: Dimensions.get('window').width,
         marginTop: '29%',
         paddingBottom: 15,
@@ -399,6 +400,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         flexDirection: 'row',
+        marginTop: 50,
     },
     /*Modal box de aulas*/
     logoImagePrint: {

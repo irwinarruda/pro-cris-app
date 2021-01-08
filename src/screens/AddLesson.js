@@ -8,11 +8,12 @@ import { AntDesign } from '@expo/vector-icons';
 import logo from '../../assets/18151751060402.jpg';
 import { AuthContext } from '../components/AuthProvider';
 import RegisterStudentButton from '../components/Buttons/RegisterStudentButton';
+import randomKeyGenerator from '../components/randomKeyGenerator';
 
 export default function AddLesson() {
     const [registerStudentModal, setRegisterStudentModal] = React.useState(false);
     const [addNewLessonModal, setAddNewLessonModal] = React.useState(false);
-    const [addNewLessonModalInfo, setAddNewLessonModalInfo] = React.useState({});
+    const [studentInfo, setStudentInfo] = React.useState({});
     const [date, setDate] = React.useState('');
     const [kidName, setKidName] = React.useState('');
     const [dateBirth, setDateBirth] = React.useState('');
@@ -24,8 +25,7 @@ export default function AddLesson() {
     const { students, studentsAdd, studentsEdit } = React.useContext(AuthContext);
 
     function createStudent() {
-        var precision = 10000; 
-        var randomnum = (Math.floor(Math.random() * (10 * precision - 1 * precision) + 1 * precision) / (1*precision)).toString();
+        let randomnum = randomKeyGenerator();
         const newStudentObj = {
             id: randomnum,
             kidName: kidName,
@@ -36,8 +36,16 @@ export default function AddLesson() {
             givenClasses: [],
             price: price,   
         }
+        setDate('');
+        setKidName('');
+        setDateBirth('');
+        setParentName('');
+        setPhoneNumber('');
+        setHouseNumber('');
+        setPrice('0');
         studentsAdd(newStudentObj);
         setRegisterStudentModal(false);
+
         Alert.alert('Criar Aluno', 'Aluno Criado com sucesso');
     }
 
@@ -48,11 +56,11 @@ export default function AddLesson() {
         if(month < 10) month = '0' + month;
         setDate(date + '/' + month);
         setAddNewLessonModal(true);
-        setAddNewLessonModalInfo(studentObj);
+        setStudentInfo(studentObj);
     }
 
     function addDateToStudent() {
-        let studentObjInfo = addNewLessonModalInfo;
+        let studentObjInfo = studentInfo;
         studentObjInfo.givenClasses.push(date);
         studentsEdit(studentObjInfo);
         Alert.alert('Aula Cadastrada com Sucesso');
@@ -85,7 +93,7 @@ export default function AddLesson() {
                     <View style={styles.addLessonBoxContainer}>
                         <View style={styles.addLessonInfoContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Adicionar aula para:</Text>
-                            <Text style={globalStyles.bold_black_16_karla}>{addNewLessonModalInfo.kidName}</Text>
+                            <Text style={globalStyles.bold_black_16_karla}>{studentInfo.kidName}</Text>
                             <TextInput style={[styles.input, {marginTop: 10, paddingVertical: 2, paddingHorizontal: 10, textAlign: 'center'}]} placeholder='eg. 17/10' keyboardType='phone-pad' defaultValue={date} onChangeText={(val) => setDate(val)}/>
                         </View>
                         <View style={styles.addLessonButtonContainer}>
@@ -173,13 +181,13 @@ const styles = StyleSheet.create({
         width: '85%',
     },
     mainInfoContainer: {
-        width: '85%',
+        width: '80%',
     },
     aditionalInfoContainer: {
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'flex-start',   
-        width: '15%',
+        width: '20%',
     },
     image: {
         width: 50,
