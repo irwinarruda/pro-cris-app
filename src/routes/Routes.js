@@ -49,12 +49,12 @@ const fakeStudents = [
 ]
 
 export default function Routes() {
-    const { loading, user, userIsLoged, studentsGet } = React.useContext(AuthContext);
-    
+    const { loading, user, userIsLoged, studentsGet, studentsDestroy } = React.useContext(AuthContext);    
     
     React.useEffect(() => {
         userIsLoged();
-        studentsGet();      
+        //studentsDestroy();
+        studentsGet(); 
     }, []); 
 
     if(loading) {
