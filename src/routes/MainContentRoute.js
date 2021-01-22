@@ -9,6 +9,7 @@ export default function MainContentRoute() {
 
     return (
         <MainContentStack.Navigator
+            initialRouteName='MainTabRoute'
             headerMode='float'
             screenOptions={{
                 headerTitle: () => <Header />,

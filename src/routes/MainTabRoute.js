@@ -10,6 +10,8 @@ const MainContentTab = createMaterialTopTabNavigator();
 export default function MainTabRoute() {
     return(
         <MainContentTab.Navigator
+            initialRouteName='AddLesson'
+            //defaultNavigationObitons
             screenOptions={({route}) => ({
                 tabBarIcon: ({color, size}) => {
                     let iconName;

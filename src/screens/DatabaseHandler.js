@@ -5,16 +5,17 @@ import * as FileSystem  from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
 
-export default function DatabaseHandler() {
+export default function DatabaseHandler({navigation}) {
     async function handleExportDbPress() {
         let dbUri = `${FileSystem.documentDirectory}/SQLite/database.db`;
         await Sharing.shareAsync(dbUri);
     }
 
     async function handleUploadDbPress() {
-        let document = await DocumentPicker.getDocumentAsync();
+        navigation.navigate('Home');
+        /* let document = await DocumentPicker.getDocumentAsync();
         console.log(document)
-        await FileSystem.downloadAsync(document.uri, `${FileSystem.documentDirectory}/SQLite/database.db`)
+        await FileSystem.downloadAsync(document.uri, `${FileSystem.documentDirectory}/SQLite/database.db`) */
     }
     return (
         <View style={styles.container}>
@@ -26,13 +27,13 @@ export default function DatabaseHandler() {
             >
                 <Text style={[globalStyles.bold_white_24_karla, styles.buttonText]}>Export Db</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity 
+            <TouchableOpacity 
                 style={ styles.buttonContainer }
                 activeOpacity={0.7}
                 onPress={() => handleUploadDbPress()}
             >
                 <Text style={[globalStyles.bold_white_24_karla, styles.buttonText]}>Upload Db</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
         </View>
     );
 }

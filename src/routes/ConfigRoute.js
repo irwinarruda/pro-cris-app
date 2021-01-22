@@ -8,21 +8,17 @@ const ConfigStack = createStackNavigator();
 export default function ConfigRoute() {
     return (
         <ConfigStack.Navigator
-            initialRouteName="UserConfig"
-            headerMode='float'
-            screenOptions={{
-                headerTitle: () => <Header />,
-                headerStyle: {
-                    backgroundColor: '#7C6FBD',    
-                    height: 110, 
-                },
-                headerLeft: () => null,
-                headerTitleAlign: "center", 
-                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                gestureEnabled: false, 
-                gestureDirection: 'horizontal', 
-                swipeEnabled: false,
-            }}
+        headerMode='float'
+        screenOptions={{
+            headerTitle: () => <Header />,
+            headerStyle: {
+                backgroundColor: '#7C6FBD',    
+                height: 95, 
+            },
+            headerLeft: () => null,
+            headerTitleAlign: "center", 
+            
+        }}
         >
             <ConfigStack.Screen name='UserConfig' component={ UserConfig }/>
         </ConfigStack.Navigator>
