@@ -36,6 +36,7 @@ export function AuthProvider({children}) {
     const [user, setUser] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [students, setStudents] = React.useState([]);
+    const [settings, setSettings] = React.useState(false);
     let sqlDb = new DatabaseInit();
 
     return (
@@ -259,6 +260,13 @@ export function AuthProvider({children}) {
                 );
                 setStudents([]);
             },
+
+
+            settings,
+            settingsChange: (bool) => {
+                setSettings(bool);
+            }
+
         }}>
             {children}
         </AuthContext.Provider>

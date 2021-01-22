@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, StyleSheet, Animated } from'react-native';
 import { AuthContext } from '../AuthProvider';
 import globalStyles from '../globalStyles';
 
-export default function LeaveHandler({ currentPage }) {
+export default function LeaveHandler() {
     const fadeAnim = React.useRef(new Animated.Value(0)).current
     const { userLogout } = React.useContext(AuthContext);
     
@@ -37,9 +37,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 5,
         position: 'absolute',
-        top: 10,
+        top: -30,
         right: '15%',
         backgroundColor: '#FBFAFF',
+        zIndex: 10000,
     },
     configContainerButton: {
         borderBottomColor: '#CCC591',

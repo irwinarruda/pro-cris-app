@@ -2,12 +2,13 @@ import React from 'react';
 import { StyleSheet, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
 import logo from '../../../assets/pro-cris-w.png';
-import LeaveHandler from './LeaveHandler';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Header() {
-    const [settingsState, setSettingsState] = React.useState(true);
+    const navigation = useNavigation();
+
     function configButtonPress() {
-        setSettingsState(!settingsState);
+        navigation.toggleDrawer();
     }
     return (
         <View style={styles.containerHeader}>
@@ -19,7 +20,6 @@ export default function Header() {
                     <Entypo name="dots-three-vertical" size={24} color="#CCC4F2" />
                 </TouchableOpacity>
             </View>
-            {!settingsState?(<LeaveHandler />): null}
         </View>    
     );
 }
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1,
         backgroundColor: '#7C6FBD',
         position: 'relative',
         borderBottomColor: '#CCC4F2',
@@ -49,21 +48,5 @@ const styles = StyleSheet.create({
     logoImage: {
         width: 131,
         resizeMode: 'contain',
-    },
-    configContainer: {
-        width: 150,
-        paddingTop: 10,
-        paddingBottom: 20,
-        paddingHorizontal: 10,
-        borderRadius: 5,
-        position: 'absolute',
-        top: 10,
-        right: '15%',
-        backgroundColor: '#FBFAFF',
-    },
-    configContainerButton: {
-        borderBottomColor: '#CCC591',
-        borderBottomWidth: 1, 
-        paddingVertical: 10,      
     },
 }); 
