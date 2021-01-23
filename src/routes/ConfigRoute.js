@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import UserConfig from '../screens/UserConfig';
 import Header from '../components/Headers/Header';
@@ -23,4 +23,4 @@ export default function ConfigRoute() {
             <ConfigStack.Screen name='UserConfig' component={ UserConfig }/>
         </ConfigStack.Navigator>
     );
-} 
+}  */

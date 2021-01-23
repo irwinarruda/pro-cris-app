@@ -1,27 +1,28 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from 'react-navigation-stack';
 import Header from '../components/Headers/Header';
 import DatabaseHandler from '../screens/DatabaseHandler';
 
-const DatabaseStack = createStackNavigator();
+const screens = {
+    DatabaseHandler: {
+        screen: DatabaseHandler,
+        navigationOptions: {
+            title: 'Database Handler'
+        },
+    },
+};
 
-export default function DatabaseRoute() {
+const DatabaseStack = createStackNavigator(screens, {
+    headerMode: 'float',
+    defaultNavigationOptions: {
+        headerTitle: () => <Header />,
+        headerStyle: {
+            backgroundColor: '#7C6FBD', 
+            height: 95,
+        }        ,
+        headerLeft: () => null,
+        headerTitleAlign: 'center',
+    },
+});
 
-    return (
-        <DatabaseStack.Navigator
-            headerMode='float'
-            screenOptions={{
-                headerTitle: () => <Header />,
-                headerStyle: {
-                    backgroundColor: '#7C6FBD',    
-                    height: 95, 
-                },
-                headerLeft: () => null,
-                headerTitleAlign: "center", 
-                
-            }}
-        >
-            <DatabaseStack.Screen name='DatabaseHandler' component={ DatabaseHandler } />
-        </DatabaseStack.Navigator>
-    );
-} 
+export default DatabaseStack;

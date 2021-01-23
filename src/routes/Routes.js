@@ -1,9 +1,8 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { AuthContext } from '../components/AuthProvider';
 import LoadingScreen from '../screens/LoadingScreen';
-import LoginRegisterRoute from './LoginRegisterRoute';
-import MainDrawerRoute from './MainDrawerRoute';
+import LoginRegisterAppContainer from './LoginRegisterRoute';
+import MainContentAppContainer from './MainDrawerRoute';
 
 const fakeStudents = [
     {
@@ -48,6 +47,7 @@ const fakeStudents = [
     }
 ]
 
+
 export default function Routes() {
     const { loading, user, userIsLoged, studentsGet, studentsDestroy } = React.useContext(AuthContext);    
     
@@ -63,17 +63,9 @@ export default function Routes() {
         );
     }
     if(user) {
-        return (
-            <NavigationContainer>
-                <MainDrawerRoute />
-            </NavigationContainer>
-        );
+        return <MainContentAppContainer />;
     } else {
-        return(
-            <NavigationContainer>
-                <LoginRegisterRoute />
-            </NavigationContainer>
-        );
+        return <LoginRegisterAppContainer />;
     }
    
 }

@@ -1,20 +1,28 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
 import Login from '../screens/Login';
 import Register from '../screens/Register';
 
-const LoginRegisterStack = createStackNavigator();
+const screens = {
+    Login: {
+        screen: Login,
+        navigationOptions: {
+            title: 'Login',
+        },
+    },
+    Register: {
+        screen: Register,
+        navigationOptions: {
+            title: 'Register',
+        },
+    },
+};
 
-export default function LoginRegisterRoute() {
-    return (
-        <LoginRegisterStack.Navigator 
-            initialRouteName='Login'
-            screenOptions={{
-                header: () => null,
-            }}
-        >
-            <LoginRegisterStack.Screen  name='Login' component={ Login }/>
-            <LoginRegisterStack.Screen name='Register' component={ Register }/>
-        </LoginRegisterStack.Navigator>
-    );
-}
+const LoginRegisterStack = createStackNavigator(screens, {
+    defaultNavigationOptions: {
+        header: () => null,
+    },
+});
+
+export default createAppContainer(LoginRegisterStack);
