@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from 'react-navigation';
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Animated } from'react-native';
 import { AuthContext } from '../AuthProvider';

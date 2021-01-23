@@ -2,10 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
 import logo from '../../../assets/pro-cris-w.png';
-import { useNavigation } from '@react-navigation/native';
 
-export default function Header() {
-    const navigation = useNavigation();
+export default function Header({navigation}) {
 
     function configButtonPress() {
         navigation.toggleDrawer();

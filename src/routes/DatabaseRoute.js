@@ -14,14 +14,18 @@ const screens = {
 
 const DatabaseStack = createStackNavigator(screens, {
     headerMode: 'float',
-    defaultNavigationOptions: {
-        headerTitle: () => <Header />,
-        headerStyle: {
-            backgroundColor: '#7C6FBD', 
-            height: 95,
-        }        ,
-        headerLeft: () => null,
-        headerTitleAlign: 'center',
+    defaultNavigationOptions: ({navigation}) => {
+        return (
+            {
+                headerTitle: () => <Header navigation={navigation} />,
+                headerStyle: {
+                    backgroundColor: '#7C6FBD', 
+                    height: 95,
+                },
+                headerLeft: () => null,
+                headerTitleAlign: 'center',
+            }
+        );
     },
 });
 

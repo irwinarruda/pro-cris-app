@@ -49,8 +49,8 @@ const MainDrawerRoute = createDrawerNavigator(screens, {
         },
     },
     defaultNavigationOptions: {
-        gestureEnabled: true,
-        swipeEnabled: true,
+        gestureEnabled: false,
+        swipeEnabled: false,
     }
 });
 
