@@ -162,16 +162,16 @@ export default function RemoveLesson() {
                         <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                             <Image style={styles.logoImagePrint} source={logo} />
                             {singleStudentArr.length !== 1? 
-                            <Text style={[globalStyles.bold_black_18_karla, {marginTop: -10,}]}>{singleStudentArr.length} aulas dadas para o(a) Aluno(a): </Text>: 
-                            <Text style={[globalStyles.bold_black_18_karla, {marginTop: -10,}]}>1 aula dada para o(a) Aluno(a): </Text>}
-                            <Text style={globalStyles.bold_black_18_karla}>{studentInfo.kidName}</Text>
+                            <Text style={[globalStyles.bold_black_16_karla, {marginTop: -10,}]}>{singleStudentArr.length} aulas dadas para o(a) Aluno(a): </Text>: 
+                            <Text style={[globalStyles.bold_black_16_karla, {marginTop: -10,}]}>1 aula dada para o(a) Aluno(a): </Text>}
+                            <Text style={globalStyles.bold_black_16_karla}>{studentInfo.kidName}</Text>
                         </View>
                         <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap'}}>
                             {singleStudentArr?singleStudentArr.map((item) => {
                                 var randomnum = randomKeyGenerator();
                                 return (
                                     <TouchableOpacity style={styles.datasBox}  activeOpacity={0.5} onPress={() => removeSingeItemArr(item)} key={randomnum} >
-                                        <Text style={[globalStyles.bold_white_18_karla]} >
+                                        <Text style={[globalStyles.bold_white_14_karla]} >
                                             {item}
                                         </Text>
                                     </TouchableOpacity>
@@ -400,7 +400,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         flexDirection: 'row',
-        marginTop: 50,
+        marginTop: 30,
     },
     /*Modal box de aulas*/
     logoImagePrint: {

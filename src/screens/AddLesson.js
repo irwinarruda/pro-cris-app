@@ -92,9 +92,9 @@ export default function AddLesson() {
                 <ViewForm style={styles.addLessonContainer}>
                     <View style={styles.addLessonBoxContainer}>
                         <View style={styles.addLessonInfoContainer}>
-                            <Text style={globalStyles.bold_black_18_karla}>Adicionar aula para:</Text>
-                            <Text style={globalStyles.bold_black_16_karla}>{studentInfo.kidName}</Text>
-                            <TextInput style={[styles.input, {marginTop: 10, paddingVertical: 2, paddingHorizontal: 10, textAlign: 'center'}]} placeholder='eg. 17/10' keyboardType='phone-pad' defaultValue={date} onChangeText={(val) => setDate(val)}/>
+                            <Text style={globalStyles.bold_black_16_karla}>Adicionar aula para:</Text>
+                            <Text style={globalStyles.bold_black_14_karla}>{studentInfo.kidName}</Text>
+                            <TextInput style={[styles.input, {marginTop: 5, paddingVertical: 1, paddingHorizontal: 2, textAlign: 'center', fontSize: 10, borderRadius: 5}]} placeholder='eg. 17/10' keyboardType='phone-pad' defaultValue={date} onChangeText={(val) => setDate(val)}/>
                         </View>
                         <View style={styles.addLessonButtonContainer}>
                             <GreenButton onPress={addDateToStudent}>Adicionar</GreenButton>
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#9A8DD6',
         borderRadius: 10,
         paddingHorizontal: 20,
-        paddingVertical: 7,
+        paddingVertical: 10,
         fontFamily: 'Karla_700Bold',
         fontSize: 12,
         color: '#FBFAFF',

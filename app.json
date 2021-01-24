@@ -30,7 +30,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "host.irwinnism.procrisapp"
+      "package": "host.irwinnism.procrisappbigfonts"
     },
     "web": {
       "favicon": "./assets/favicon.png"

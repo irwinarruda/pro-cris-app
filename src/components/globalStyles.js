@@ -58,6 +58,12 @@ const globalStyles = StyleSheet.create({
         fontSize: 14,
         color: '#FBFAFF'
     },
+    bold_white_16_karla: {
+        fontFamily: 'Karla_700Bold',
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 12,
+        color: '#FBFAFF'
+    },
     bold_white_14_karla: {
         fontFamily: 'Karla_700Bold',
         /*Esse item foi modificado para telas com letras maiores*/

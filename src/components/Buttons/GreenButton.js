@@ -9,7 +9,7 @@ export default function GoldButton(props) {
             activeOpacity={0.7}
             {...props}
         >
-            <Text style={globalStyles.bold_white_14_karla}>{ props.children }</Text>
+            <Text style={globalStyles.bold_white_12_karla}>{ props.children }</Text>
         </TouchableOpacity>
     );
 }

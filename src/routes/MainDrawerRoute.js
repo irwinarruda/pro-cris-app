@@ -27,6 +27,7 @@ export default function MainDrawerRoute() {
                 },
                 labelStyle: {
                     fontFamily: 'Karla_700Bold',
+                    fontSize: 10,
                 },
                 contentContainerStyle: {
                     paddingTop: 10,

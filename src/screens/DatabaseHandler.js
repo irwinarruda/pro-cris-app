@@ -73,23 +73,23 @@ export default function DatabaseHandler({navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.exportContainer}>
-                <Text style={[globalStyles.bold_black_18_karla, {width: 150, textAlign: 'center',}]}>Exportar banco de dados</Text>
+                <Text style={[globalStyles.bold_black_16_karla, {width: 210, textAlign: 'center',}]}>Exportar banco de dados</Text>
                 <TouchableOpacity 
                     style={ styles.buttonContainer }
                     activeOpacity={0.7}
                     onPress={() => handleExportDbPress()}
                 >
-                    <Text style={[globalStyles.bold_white_24_karla, styles.buttonText]}>Exportar</Text>
+                    <Text style={[globalStyles.bold_white_18_karla, styles.buttonText]}>Exportar</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.uploadContainer}>
-                <Text style={[globalStyles.bold_black_18_karla, {width: 150, textAlign: 'center',}]}>Upload banco de dados</Text>
+                <Text style={[globalStyles.bold_black_16_karla, {width: 210, textAlign: 'center',}]}>Upload banco de dados</Text>
                 <TouchableOpacity 
                     style={ [styles.buttonContainer, { backgroundColor: '#CC352C', }] }
                     activeOpacity={0.7}
                     onPress={() => handleUploadDbPress()}
                 >
-                    <Text style={[globalStyles.bold_white_24_karla, styles.buttonText]}>Upload</Text>
+                    <Text style={[globalStyles.bold_white_18_karla, styles.buttonText]}>Upload</Text>
                 </TouchableOpacity>
             </View>
         </View>
