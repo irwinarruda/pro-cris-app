@@ -114,7 +114,7 @@ export default function AddLesson() {
                     <View style={styles.formContainer}>
                         <View style={styles.inputContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Nome do Aluno</Text>
-                            <TextInput style={styles.input} placeholder='eg. Cassiel Arruda' autoCapitalize='none' onChangeText={(val) => setKidName(val)}/>
+                            <TextInput style={styles.input} placeholder='eg. Cassiel Arruda' onChangeText={(val) => setKidName(val)}/>
                         </View>
                         <View style={styles.inputContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Data de Nascimento</Text>
