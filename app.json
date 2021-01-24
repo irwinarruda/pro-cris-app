@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Prô Cris App",
-    "slug": "pro-cris-app-v1.5",
+    "name": "Prô Cris App (Big Text)",
+    "slug": "pro-cris-app-big-text-v1_5",
     "version": "1.5.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,6 @@
       "**/*"
     ],
     "androidNavigationBar": {
-     "visible": true,
      "barStyle": "light-content",
      "backgroundColor": "#7C6FBD"
     },
