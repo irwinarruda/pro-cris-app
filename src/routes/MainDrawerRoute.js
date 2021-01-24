@@ -13,7 +13,7 @@ export default function MainDrawerRoute() {
             overlayColor={1}
             drawerStyle={{
                 width: 150,
-                height: 170,
+                height: 150,
                 marginTop: 25,
                 elevation: 6,
             }}
@@ -24,6 +24,9 @@ export default function MainDrawerRoute() {
                     marginTop: 0,
                     marginBottom: 0, 
                     padding: 0,
+                },
+                labelStyle: {
+                    fontFamily: 'Karla_700Bold',
                 },
                 contentContainerStyle: {
                     paddingTop: 10,
