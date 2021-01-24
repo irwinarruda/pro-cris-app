@@ -4,14 +4,13 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import AddLesson from '../screens/AddLesson';
 import RemoveLesson from '../screens/RemoveLesson';
 
-
 const MainContentTab = createMaterialTopTabNavigator();
 
 export default function MainTabRoute() {
     return(
         <MainContentTab.Navigator
             screenOptions={({route}) => ({
-                tabBarIcon: ({color, size}) => {
+                tabBarIcon: ({color}) => {
                     let iconName;
                     if(route.name === 'AddLesson') {
                         iconName = 'clipboard';

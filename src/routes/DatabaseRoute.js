@@ -1,14 +1,14 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Header from '../components/Headers/Header';
-import MainTabRoute from './MainTabRoute';
+import DatabaseHandler from '../screens/DatabaseHandler';
 
-const MainContentStack = createStackNavigator();
+const DatabaseStack = createStackNavigator();
 
-export default function MainContentRoute() {
+export default function DatabaseRoute() {
 
     return (
-        <MainContentStack.Navigator
+        <DatabaseStack.Navigator
             headerMode='float'
             screenOptions={({navigation}) => {
                 return (
@@ -24,7 +24,7 @@ export default function MainContentRoute() {
                 );
             }}
         >
-            <MainContentStack.Screen name='MainTabRoute' component={ MainTabRoute } />
-        </MainContentStack.Navigator>
+            <DatabaseStack.Screen name='DatabaseHandler' component={ DatabaseHandler } />
+        </DatabaseStack.Navigator>
     );
 } 
