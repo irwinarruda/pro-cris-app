@@ -13,7 +13,7 @@ export default function MainDrawerRoute() {
             overlayColor={1}
             drawerStyle={{
                 width: 150,
-                height: 150,
+                height: 170,
                 marginTop: 25,
                 elevation: 6,
             }}

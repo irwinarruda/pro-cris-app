@@ -134,6 +134,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'Yellowtail_400Regular',
-        fontSize: 20,
+        fontSize: 16,
     },
 });

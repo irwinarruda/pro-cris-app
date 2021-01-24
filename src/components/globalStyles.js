@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
 
 const globalStyles = StyleSheet.create({
@@ -13,52 +12,62 @@ const globalStyles = StyleSheet.create({
     },
     bold_black_24_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 24,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 20,
         color: '#353440'
     },
     bold_black_20_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 20,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 16,
         color: '#353440'
     },
     bold_black_18_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 18,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 14,
         color: '#353440'
     },
     bold_black_16_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 16,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 12,
         color: '#353440'
     },
     bold_black_14_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 14,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 10,
         color: '#353440'
     },
     bold_black_12_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 12,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 8,
         color: '#353440'
     },
     bold_white_24_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 24,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 20,
         color: '#FBFAFF'
     },
     bold_white_18_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 18,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 14,
         color: '#FBFAFF'
     },
     bold_white_14_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 14,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 10,
         color: '#FBFAFF'
     },
     bold_white_12_karla: {
         fontFamily: 'Karla_700Bold',
-        fontSize: 12,
+        /*Esse item foi modificado para telas com letras maiores*/
+        fontSize: 8,
         color: '#FBFAFF'
     },
 });

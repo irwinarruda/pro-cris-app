@@ -16,7 +16,7 @@ export default function GoldButton(props) {
 const styles = StyleSheet.create({
     goldButtonYellowText: {
         fontFamily: 'Yellowtail_400Regular',
-        fontSize: 48,
+        fontSize: 30,
         color: '#FBFAFF',
     },
     goldButtonYellow: {

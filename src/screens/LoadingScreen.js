@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     copyright: {
         fontFamily: 'Yellowtail_400Regular',
-        fontSize: 36,
+        fontSize: 30,
         color: '#FBFAFF',
     },
 });

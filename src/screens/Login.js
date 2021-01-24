@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         fontFamily: 'Karla_700Bold',
-        fontSize: 20,
+        fontSize: 16,
         color: '#FBFAFF',
         marginTop: 0,
     },
