@@ -140,7 +140,8 @@ export function AuthProvider({children}) {
                 sqlDb._db.transaction(
                     tx => {
                         tx.executeSql(
-                            `DELETE FROM alunos`,
+                            `DELETE FROM alunos;
+                             DELETE FROM sqlite_sequence WHERE name='alunos'`,
                             [],
                             () => {},
                             error => console.log(error)
