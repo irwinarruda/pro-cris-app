@@ -10,16 +10,45 @@ import { AuthContext } from '../components/AuthProvider';
 import { Entypo } from '@expo/vector-icons'; 
 import logo from '../../assets/pro-cris-b.png';
 import randomKeyGenerator from '../components/randomKeyGenerator';
+import { splitSlashes, insertSlashes } from '../components/slashesHandler';
 
 export default function RemoveLesson() {
     const [studentSettingsModal, setStudentSettingsModal] = React.useState(false);
     const [lessonsArrModal, setLessonsArrModal] = React.useState(false);
-    const [studentInfo, setStudentInfo] = React.useState({});
+    const [studentInfo, setStudentInfo] = React.useState({
+        id: '',
+        kidName: '',
+        dateBirth: '',
+        parentName: '',
+        phoneNumber: '',
+        houseNumber: '',
+        givenClasses: [],
+        price: '',
+    });
+    const [studentInfoDateBackHandler, setStudentInfoDateBackHandler] = React.useState('');
     const [singleStudentArr, setSingleStudentArr] = React.useState([]);
     const [saldo, setSaldo] = React.useState(0);
     const [saldoStatus, setSaldoStatus] = React.useState(false);
 
     const { students, studentsEdit, studentsDelete } = React.useContext(AuthContext);
+
+    React.useEffect(() => {
+        let nowDateBirth = studentInfo.dateBirth;
+        if(nowDateBirth.length >= studentInfoDateBackHandler.length) {
+            setStudentInfoDateBackHandler(nowDateBirth);
+            if(nowDateBirth.length === 2 || nowDateBirth.length === 5) {
+                setStudentInfo({ ...studentInfo, dateBirth: nowDateBirth + '/' });
+                return;
+            }
+
+            let onlyDateBirth = splitSlashes(nowDateBirth, '/');
+            if(onlyDateBirth.length > 7) {
+                setStudentInfo({ ...studentInfo, dateBirth: insertSlashes(onlyDateBirth) });
+            }
+        } else {
+            setStudentInfoDateBackHandler(nowDateBirth);
+        }
+    }, [studentInfo.dateBirth])
 
     function handleStudentInfoPress(studentObj) {
         setStudentInfo(studentObj);
@@ -145,9 +174,11 @@ export default function RemoveLesson() {
                         </View>
                         <View style={styles.infoContainer}>
                             <View style={styles.mainInfoContainer}>
-                                <Text style={globalStyles.bold_black_18_karla}>{item.kidName}</Text>
-                                <Text style={globalStyles.bold_black_14_karla}>{item.parentName}: {item.phoneNumber}</Text>
-                                <Text style={globalStyles.bold_black_12_karla}>Aulas Dadas: {item.givenClasses.length}</Text>
+                                <View style={{width: Dimensions.get('window').width}}>
+                                    <Text style={globalStyles.bold_black_18_karla}>{item.kidName}</Text>
+                                    <Text style={globalStyles.bold_black_14_karla}>{item.parentName}: {item.phoneNumber}</Text>
+                                    <Text style={globalStyles.bold_black_12_karla}>Aulas Dadas: {item.givenClasses.length}</Text>
+                                </View>
                             </View>
                             <TouchableOpacity activeOpacity={0.4} style={styles.aditionalInfoIcon} onPress={() => handleStudentInfoPress(item)}>
                                 <Entypo name="dots-three-vertical" size={24} color="#BAB273" />
@@ -186,11 +217,11 @@ export default function RemoveLesson() {
                 </ViewForm>
             </Modal>
             <Modal visible={studentSettingsModal} animationType='slide' transparent={false} onRequestClose={() => setStudentSettingsModal(false)}>
-                <ViewForm style={styles.changeInfoContainer}>
+                <ViewForm style={styles.modalContainer}>
                     <TouchableOpacity onPress={() => setStudentSettingsModal(false)} activeOpacity={0.3}>
                         <AntDesign name="closecircleo" size={50} color="#BAB273" />
                     </TouchableOpacity> 
-                    <Text style={globalStyles.bold_black_18_karla}>Modificar Aluno</Text>
+                    <Text style={[globalStyles.bold_black_18_karla, {marginBottom: 5}]}>Modificar Aluno</Text>
                     <View style={styles.formContainer}>
                         <View style={styles.inputContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Nome do Aluno</Text>
@@ -264,14 +295,15 @@ const styles = StyleSheet.create({
         width: '85%',
     },
     aditionalInfoIcon: {
-        paddingVertical: 10,
+        paddingVertical: 20,
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'flex-start', 
-        width: '20%', 
+        width: '15%', 
     },  
     mainInfoContainer: {
-        width: '80%',
+        overflow: 'hidden',
+        width: '85%',
     },
     image: {
         width: 50,
@@ -297,17 +329,17 @@ const styles = StyleSheet.create({
     },
     /*Container Saldo*/
 
-    /*Modal de adacionar alunos*/
+    /*Modal de modificar*/
     modalContainer: {
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center',
         flex: 1,
         backgroundColor: '#fff',
-        paddingTop: 15,
+        paddingTop: 30,
     },
     formContainer: {
-        width: '80%',
+        width: '85%',
         marginBottom: 10,
     },
     inputContainer: {
@@ -334,37 +366,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         marginTop: 20,
     },
-    /*Modal de adacionar alunos*/
-
-    /*Modal do box editar alunos*/
-    changeInfoContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-        paddingTop: 15,
-    },
-    changeInfoBoxContainer: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        height: 170,
-        width: 300, 
-        paddingVertical: 15,
-        shadowColor: "#000",
-        borderColor: '#CCC591',
-        borderWidth: 2,
-        borderRadius: 10,
-        shadowOffset: {
-        width: 0,
-        height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    /*Modal do box editar alunos*/
+    /*Modal de modificar*/
     /*Modal box de aulas*/
     lessonsArrContainer: {
         display: 'flex',

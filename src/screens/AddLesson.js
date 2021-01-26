@@ -9,12 +9,14 @@ import logo from '../../assets/18151751060402.jpg';
 import { AuthContext } from '../components/AuthProvider';
 import RegisterStudentButton from '../components/Buttons/RegisterStudentButton';
 import randomKeyGenerator from '../components/randomKeyGenerator';
+import { splitSlashes, insertSlashes } from '../components/slashesHandler';
 
 export default function AddLesson() {
     const [registerStudentModal, setRegisterStudentModal] = React.useState(false);
     const [addNewLessonModal, setAddNewLessonModal] = React.useState(false);
     const [studentInfo, setStudentInfo] = React.useState({});
     const [date, setDate] = React.useState('');
+    const [dateBackHandler, setDateBackHandler] = React.useState('');
     const [kidName, setKidName] = React.useState('');
     const [dateBirth, setDateBirth] = React.useState('');
     const [parentName, setParentName] = React.useState('');
@@ -23,6 +25,25 @@ export default function AddLesson() {
     const [price, setPrice] = React.useState('0');
 
     const { students, studentsAdd, studentsEdit } = React.useContext(AuthContext);
+
+    React.useEffect(() => {
+        let nowDateBirth = dateBirth;
+        if(dateBirth.length >= dateBackHandler.length) {
+            setDateBackHandler(nowDateBirth);
+            if(nowDateBirth.length === 2 || nowDateBirth.length === 5) {
+                setDateBirth(nowDateBirth + '/');
+                return;
+            }
+
+            let onlyDateBirth = splitSlashes(nowDateBirth, '/');
+            if(onlyDateBirth.length > 7) {
+                setDateBirth(insertSlashes(onlyDateBirth));
+            }
+        } else {
+            setDateBackHandler(nowDateBirth);
+        }
+        
+    }, [dateBirth]);
 
     function createStudent() {
         let randomnum = randomKeyGenerator();
@@ -77,7 +98,9 @@ export default function AddLesson() {
                         </View>
                         <View style={styles.infoContainer}>
                             <View style={styles.mainInfoContainer}>
-                                <Text style={globalStyles.bold_black_18_karla}>{item.kidName}</Text>
+                                <View style={{width: Dimensions.get('window').width}}>
+                                    <Text style={globalStyles.bold_black_18_karla}>{item.kidName.length > 18? item.kidName.substring(0, 18) + '...': item.kidName}</Text>
+                                </View>
                                 <Text style={globalStyles.bold_black_14_karla}>{item.houseNumber}</Text>
                             </View>
                             <View style={styles.aditionalInfoContainer}>
@@ -110,7 +133,7 @@ export default function AddLesson() {
                     <TouchableOpacity onPress={() => setRegisterStudentModal(false)} activeOpacity={0.3}>
                         <AntDesign name="closecircleo" size={50} color="#BAB273" />
                     </TouchableOpacity>      
-                    <Text style={globalStyles.bold_black_18_karla}>Adicionar um Aluno</Text>
+                    <Text style={[globalStyles.bold_black_18_karla, {marginBottom: 5}]}>Adicionar um Aluno</Text>
                     <View style={styles.formContainer}>
                         <View style={styles.inputContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Nome do Aluno</Text>
@@ -118,7 +141,7 @@ export default function AddLesson() {
                         </View>
                         <View style={styles.inputContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Data de Nascimento</Text>
-                            <TextInput style={styles.input} placeholder='eg. 17/10/2006' keyboardType='phone-pad' onChangeText={(val) => setDateBirth(val)}/>
+                            <TextInput style={styles.input} placeholder='eg. 17/10/2006' keyboardType='phone-pad' value={dateBirth} onChangeText={(val) => {setDateBirth(val); }}/>
                         </View>
                         <View style={styles.inputContainer}>
                             <Text style={globalStyles.bold_black_18_karla}>Nome do Responsável</Text>
@@ -181,6 +204,7 @@ const styles = StyleSheet.create({
         width: '85%',
     },
     mainInfoContainer: {
+        overflow: 'hidden',
         width: '80%',
     },
     aditionalInfoContainer: {
@@ -207,10 +231,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         backgroundColor: '#fff',
-        paddingTop: 15,
+        paddingTop: 30,
     },
     formContainer: {
-        width: '80%',
+        width: '85%',
         marginBottom: 10,
     },
     inputContainer: {
